@@ -15,7 +15,7 @@ export default function HeroSection() {
               Hello I'm
             </Typography>
             <Typography id="hero-title" variant="displayText_extra_bold">
-              Harishiv
+              Harishiv Singh
             </Typography>
           </Box>
           <Box id="position-title" sx={{ display: 'flex', flexDirection: 'row', gap: '16px' }}>

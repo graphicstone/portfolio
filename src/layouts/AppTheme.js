@@ -123,6 +123,23 @@ const appThemeWithoutCustomStyles = createTheme({
           paragraph_p2_bold: 'p',
           paragraph_p2_extra_bold: 'p',
 
+          heading_h4_regular: 'p',
+          heading_h4_medium: 'p',
+          heading_h4_bold: 'p',
+          heading_h4_semi_bold: 'p',
+          heading_h4_extra_bold: 'p',
+
+          heading_h5_regular: 'p',
+          heading_h5_medium: 'p',
+          heading_h5_bold: 'p',
+          heading_h5_extra_bold: 'p',
+
+          heading_h6_regular: 'p',
+          heading_h6_medium: 'p',
+          heading_h6_bold: 'p',
+          heading_h6_semi_bold: 'p',
+          heading_h6_extra_bold: 'p',
+
           nd1: 'p',
           nd2: 'p',
           nd3: 'p',
@@ -211,6 +228,121 @@ const appTheme = createTheme(appThemeWithoutCustomStyles, {
     paragraph_p2_extra_bold: {
       fontSize: '16px',
       lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 900
+    },
+
+    // heading_h4
+    heading_h4_regular: {
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 400
+    },
+
+    heading_h4_medium: {
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 500
+    },
+
+    heading_h4_semi_bold: {
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 600
+    },
+
+    heading_h4_bold: {
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 700
+    },
+
+    heading_h4_extra_bold: {
+      fontSize: '24px',
+      lineHeight: '28px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 900
+    },
+
+    // heading_h5
+    heading_h5_regular: {
+      fontSize: '20px',
+      lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 400
+    },
+
+    heading_h5_medium: {
+      fontSize: '20px',
+      lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 500
+    },
+
+    heading_h5_bold: {
+      fontSize: '20px',
+      lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 700
+    },
+
+    heading_h5_extra_bold: {
+      fontSize: '20px',
+      lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 900
+    },
+
+    // heading_h6
+    heading_h6_regular: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 400
+    },
+
+    heading_h6_medium: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 500
+    },
+
+    heading_h6_semi_bold: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 600
+    },
+
+    heading_h6_bold: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 700
+    },
+
+    heading_h6_extra_bold: {
+      fontSize: '16px',
+      lineHeight: '20px',
       letterSpacing: 0,
       fontFamily: FontsEnum.SORA,
       fontWeight: 900
