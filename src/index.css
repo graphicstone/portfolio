@@ -1,0 +1,19 @@
+html {
+    overscroll-behavior-x: none;
+}
+
+body {
+    margin: 0;
+    font-synthesis: none;
+    font-family: -apple-system, 'Sora', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background: #ffffff;
+    overscroll-behavior-x: none;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
