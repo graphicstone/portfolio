@@ -4,9 +4,7 @@ import HeroSection from './components/hero-section/HeroSection.jsx';
 import Toolbar from './components/toolbar/Toolbar.jsx';
 import SkillsSection from './components/skills-section/SkillsSection.jsx';
 import ExperienceSection from './components/experience-section/ExperienceSection.jsx';
-
-const drawerWidth = 240;
-const navItems = ['About Me', 'Skills', 'Project', 'Contact Me'];
+import AboutMe from './components/about-me/AboutMe.jsx';
 
 function LandingPage() {
   return (
@@ -16,6 +14,7 @@ function LandingPage() {
         <HeroSection />
         <SkillsSection />
         <ExperienceSection />
+        <AboutMe />
       </Box>
     </Box>
   );
