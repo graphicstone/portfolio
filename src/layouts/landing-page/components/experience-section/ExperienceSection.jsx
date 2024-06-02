@@ -7,7 +7,7 @@ import { colorPalette } from '../../../ColorPalette.js';
 
 export default function ExperienceSection() {
   return (
-    <Box id="experience-section" sx={experienceSectionStyles.experienceSection}>
+    <Box id="experience" sx={experienceSectionStyles.experienceSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
         <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>
           <span style={{ fontWeight: 400 }}>My</span> Experience

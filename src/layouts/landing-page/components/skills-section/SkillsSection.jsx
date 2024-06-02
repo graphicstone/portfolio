@@ -7,7 +7,7 @@ import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
 
 export default function SkillsSection() {
   return (
-    <Box id="skills-section" sx={skillsSectionStyles.skillsSection}>
+    <Box id="skills" sx={skillsSectionStyles.skillsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
         <Typography variant="displayText_extra_bold">
           <span style={{ fontWeight: 400 }}>My</span> skills

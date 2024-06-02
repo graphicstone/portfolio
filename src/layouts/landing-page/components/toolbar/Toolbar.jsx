@@ -7,7 +7,7 @@ import Menu from '../../../../assets/svg/ic_menu.svg?react';
 import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
 
 export default function Toolbar() {
-  const toolbarItems = ['About Me', 'Skills', 'Project', 'Contact Me'];
+  const toolbarItems = ['About Me', 'Skills', 'Projects', 'Contact Me'];
   const [drawerState, setDrawerState] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -25,10 +25,19 @@ export default function Toolbar() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {toolbarItems.map((text) => (
-          <ListItem key={text} disablePadding>
+        {toolbarItems.map((item) => (
+          <ListItem key={item} disablePadding>
             <ListItemButton>
-              <Typography variant="paragraph_p2_regular">{text}</Typography>
+              <Box
+                id="drawer-items"
+                sx={{ cursor: 'pointer' }}
+                onClick={() => {
+                  const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <Typography variant="paragraph_p2_regular">{item}</Typography>
+              </Box>
             </ListItemButton>
           </ListItem>
         ))}
@@ -39,11 +48,21 @@ export default function Toolbar() {
   return (
     <Box id="toolbar" sx={toolbarStyles.container}>
       <Typography variant="h6">Personal</Typography>
-      <Box id="toolbar-items" sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row' }}>
+      <Box id="toolbar-items" sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '24px' }}>
         {toolbarItems.map((item) => (
-          <Typography key={item} variant="h6" sx={{ mx: 2 }}>
-            {item}
-          </Typography>
+          <Box
+            id="toolbar-item"
+            key={item}
+            sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+            onClick={() => {
+              const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            <Typography key={item} variant="h6">
+              {item}
+            </Typography>
+          </Box>
         ))}
       </Box>
       <Button

@@ -8,7 +8,7 @@ import ProjectUserInfoView from '../../../../assets/webp/project_user_info_view.
 
 export default function ProjectsSection() {
   return (
-    <Box id="projects-section" sx={projectsSectionStyles.projectsSection}>
+    <Box id="projects" sx={projectsSectionStyles.projectsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
         <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>
           <span style={{ fontWeight: 400 }}>My</span> Projects
