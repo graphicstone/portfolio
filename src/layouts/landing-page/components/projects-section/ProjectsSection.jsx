@@ -21,24 +21,24 @@ export default function ProjectsSection() {
         <ProjectsCard
           index="01"
           name="Project OneSide"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="OneSide is a unique mathematical puzzle game written in Kotlin where you have to swap rows and columns up and down to match the grid generated on a 3 x 3 board."
           image={ProjectOneSide}
-          link="https://www.google.com"
+          link="https://github.com/graphicstone/OneSide"
         />
         <ProjectsCard
           index="02"
-          name="Project Covid 19"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          name="Project Covid 19 Support"
+          description="Coivd-19 Support is an android application written in Java in which one can see real time statistical and graphical data regarding the Covid-19 pandemic."
           image={ProjectCovid}
-          link="https://www.google.com"
+          link="https://github.com/graphicstone/Covid-19-Support"
           reverse={true}
         />
         <ProjectsCard
           index="03"
           name="Project UserInfoView"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description="A UserInfoView for android to easily create a UserViewCard with title, subtitle, tag and image in it. You can easily customize the view through xml attributes that are present there."
           image={ProjectUserInfoView}
-          link="https://www.google.com"
+          link="https://github.com/graphicstone/UserInfoView"
         />
       </Box>
     </Box>
