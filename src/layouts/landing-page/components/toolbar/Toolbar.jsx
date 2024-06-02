@@ -30,7 +30,7 @@ export default function Toolbar() {
             <ListItemButton>
               <Box
                 id="drawer-items"
-                sx={{ cursor: 'pointer' }}
+                sx={{ cursor: 'pointer', width: '100%' }}
                 onClick={() => {
                   const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
                   element?.scrollIntoView({ behavior: 'smooth' });
