@@ -36,7 +36,13 @@ export default function ExperienceCard({
         </Box>
         <Typography variant="heading_h6_semibold" sx={{ color: 'colors.white' }}>{tenure}</Typography>
       </Box>
-      <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.white' }}>{description}</Typography>
+      <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.white' }}>
+        <ul>
+          {description.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </Typography>
     </Box>
   );
 }

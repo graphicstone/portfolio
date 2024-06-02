@@ -10,7 +10,7 @@ import ProjectsSection from './components/projects-section/ProjectsSection.jsx';
 function LandingPage() {
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', position: 'relative' }}>
         <Toolbar />
         <HeroSection />
         <SkillsSection />

@@ -27,11 +27,6 @@ export default function AboutMeSection() {
           Implemented real-time data updates using Pusher.js and socket.io in multiple applications, ensuring seamless
           user experiences. Achieved 90% test coverage with Playwright and Jest, resulting in robust and reliable code.
           Optimized CI/CD pipelines with GitHub Actions and Google App Engine, reducing deployment times by 20%.
-          <br />
-          <br />
-          Created innovative features like Character Lab, virtual card animations, and in-app games, significantly
-          enhancing user interactivity. Integrated secure multi-wallet login and KYC verification, improving user
-          authentication processes and security.
         </Typography>
       </Box>
     </Box>
