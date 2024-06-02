@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
-import { aboutMeStyles } from './AboutMeStyles.js';
-import AboutMeImage from '../../../../assets/about-me.svg?react';
+import { aboutMeSectionStyles } from './AboutMeSectionStyles.js';
+import AboutMeImage from '../../../../assets/svg/about_me.svg?react';
 import Typography from '@mui/material/Typography';
 
-export default function AboutMe() {
+export default function AboutMeSection() {
   return (
-    <Box id="about-me" sx={aboutMeStyles.aboutMeSection}>
+    <Box id="about-me" sx={aboutMeSectionStyles.aboutMeSection}>
       <AboutMeImage />
       <Box id="about-me-text" sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <Box id="about-me-title" sx={{ display: 'flex', flexDirection: 'row', gap: '16px', padding: '20px 0' }}>

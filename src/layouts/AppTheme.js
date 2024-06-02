@@ -123,6 +123,11 @@ const appThemeWithoutCustomStyles = createTheme({
           paragraph_p2_bold: 'p',
           paragraph_p2_extra_bold: 'p',
 
+          heading_h2_regular: 'p',
+          heading_h2_medium: 'p',
+          heading_h2_bold: 'p',
+          heading_h2_extra_bold: 'p',
+
           heading_h4_regular: 'p',
           heading_h4_medium: 'p',
           heading_h4_bold: 'p',
@@ -228,6 +233,39 @@ const appTheme = createTheme(appThemeWithoutCustomStyles, {
     paragraph_p2_extra_bold: {
       fontSize: '16px',
       lineHeight: '24px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 900
+    },
+
+    // heading_h2
+    heading_h2_regular: {
+      fontSize: '32px',
+      lineHeight: '40px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 400
+    },
+
+    heading_h2_medium: {
+      fontSize: '32px',
+      lineHeight: '40px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 500
+    },
+
+    heading_h2_bold: {
+      fontSize: '32px',
+      lineHeight: '40px',
+      letterSpacing: 0,
+      fontFamily: FontsEnum.SORA,
+      fontWeight: 700
+    },
+
+    heading_h2_extra_bold: {
+      fontSize: '32px',
+      lineHeight: '40px',
       letterSpacing: 0,
       fontFamily: FontsEnum.SORA,
       fontWeight: 900

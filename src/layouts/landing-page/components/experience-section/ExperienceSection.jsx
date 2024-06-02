@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { experienceSectionStyles } from './ExperienceSectionStyles.js';
 import ExperienceCard from './ExperienceCard.jsx';
-import JavaScript from '../../../../assets/ic_javascript.svg?react';
+import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
 
 export default function ExperienceSection() {
   return (

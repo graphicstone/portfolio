@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import HeroImage from '../../../../assets/hero_image.svg?react';
-import JavaScript from '../../../../assets/ic_javascript.svg?react';
+import HeroImage from '../../../../assets/svg/hero_image.svg?react';
+import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
 import { heroSectionStyles } from './HeroSectionStyles.js';
 import SocialButton from '../../../components/social-button/SocialButton.jsx';
 

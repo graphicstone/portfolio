@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { skillsSectionStyles } from './SkillsSectionStyles.js';
 import { Grid } from '@mui/material';
 import SkillsBadge from './SkillsBadge.jsx';
-import JavaScript from '../../../../assets/ic_javascript.svg?react';
+import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
 
 export default function SkillsSection() {
   return (
