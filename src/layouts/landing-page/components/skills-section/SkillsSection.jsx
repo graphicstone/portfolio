@@ -3,7 +3,16 @@ import Typography from '@mui/material/Typography';
 import { skillsSectionStyles } from './SkillsSectionStyles.js';
 import { Grid } from '@mui/material';
 import SkillsBadge from './SkillsBadge.jsx';
-import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
+import Android from '../../../../assets/svg/skills/android.svg?react';
+import Css from '../../../../assets/svg/skills/css.svg?react';
+import Firebase from '../../../../assets/svg/skills/firebase.svg?react';
+import Flutter from '../../../../assets/svg/skills/flutter.svg?react';
+import Html from '../../../../assets/svg/skills/html.svg?react';
+import JavaScript from '../../../../assets/svg/skills/javascript.svg?react';
+import Kotlin from '../../../../assets/svg/skills/kotlin.svg?react';
+import React from '../../../../assets/svg/skills/react.svg?react';
+import Redux from '../../../../assets/svg/skills/redux.svg?react';
+
 
 export default function SkillsSection() {
   return (
@@ -15,28 +24,31 @@ export default function SkillsSection() {
       </Box>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="Android" icon={<Android />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="Flutter" icon={<Flutter />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="React" icon={<React />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="Redux" icon={<Redux />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="JavaScript" icon={<JavaScript />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="Kotlin" icon={<Kotlin />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="HTML" icon={<Html />} />
         </Grid>
         <Grid item xs={6} md={3}>
-          <SkillsBadge name="React" icon={<JavaScript />} />
+          <SkillsBadge name="CSS" icon={<Css />} />
+        </Grid>
+        <Grid item xs={6} md={3}>
+          <SkillsBadge name="Firebase" icon={<Firebase />} />
         </Grid>
       </Grid>
     </Box>

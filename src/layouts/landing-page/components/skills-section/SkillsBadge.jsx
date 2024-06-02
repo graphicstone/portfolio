@@ -13,7 +13,19 @@ export default function SkillsBadge({ icon, name }) {
         width: '100%',
         padding: '24px',
         border: `2px solid ${colorPalette.black}`,
-        gap: '8px'
+        gap: '32px',
+        cursor: 'pointer',
+        '& svg': {
+          height: '40px',
+          width: 'auto'
+        },
+        '&:hover': {
+          backgroundColor: colorPalette.black,
+          color: colorPalette.white,
+          '& svg': {
+            fill: colorPalette.white
+          }
+        }
       }}
     >
       {icon}
