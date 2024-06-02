@@ -16,8 +16,6 @@ import Git from '../../../../assets/svg/skills/git.svg?react';
 
 
 export default function SkillsSection() {
-  const isMobile = window.innerWidth < 900;
-
   return (
     <Box id="skills" sx={skillsSectionStyles.skillsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
@@ -26,38 +24,36 @@ export default function SkillsSection() {
         </Typography>
       </Box>
       <Grid container spacing={2}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Android" icon={<Android />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Flutter" icon={<Flutter />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="React" icon={<React />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Redux" icon={<Redux />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="JavaScript" icon={<JavaScript />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Kotlin" icon={<Kotlin />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="HTML" icon={<Html />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="CSS" icon={<Css />} />
         </Grid>
-        {!isMobile && <Grid item md={3} />}
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Firebase" icon={<Firebase />} />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={6} md={2.4}>
           <SkillsBadge name="Git" icon={<Git />} />
         </Grid>
-        {!isMobile && <Grid item md={3} />}
       </Grid>
     </Box>
   );
