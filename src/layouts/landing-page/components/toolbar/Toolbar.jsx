@@ -4,6 +4,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { toolbarStyles } from './ToolbarStyles.js';
 import Menu from '../../../../assets/svg/ic_menu.svg?react';
+import Download from '../../../../assets/svg/ic_download.svg?react';
 import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
 
 export default function Toolbar() {
@@ -68,7 +69,17 @@ export default function Toolbar() {
       <Button
         id="toolbar-button"
         variant="contained"
-        sx={{ display: { xs: 'none', md: 'flex' } }}>
+        endIcon={<Download />}
+        sx={{
+          textTransform: 'none',
+          display: { xs: 'none', md: 'flex' },
+          color: 'colors.white',
+          backgroundColor: 'colors.black'
+        }}
+        onClick={() => {
+          window.open('https://drive.google.com/file/d/1Wq0hp1qiY5gYM-pCes0-TIX_apt3KC9k/view', '_blank');
+        }}
+      >
         Resume
       </Button>
       <Box
