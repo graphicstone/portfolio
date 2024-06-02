@@ -12,9 +12,12 @@ import JavaScript from '../../../../assets/svg/skills/javascript.svg?react';
 import Kotlin from '../../../../assets/svg/skills/kotlin.svg?react';
 import React from '../../../../assets/svg/skills/react.svg?react';
 import Redux from '../../../../assets/svg/skills/redux.svg?react';
+import Git from '../../../../assets/svg/skills/git.svg?react';
 
 
 export default function SkillsSection() {
+  const isMobile = window.innerWidth < 900;
+
   return (
     <Box id="skills" sx={skillsSectionStyles.skillsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
@@ -47,9 +50,14 @@ export default function SkillsSection() {
         <Grid item xs={6} md={3}>
           <SkillsBadge name="CSS" icon={<Css />} />
         </Grid>
+        {!isMobile && <Grid item md={3} />}
         <Grid item xs={6} md={3}>
           <SkillsBadge name="Firebase" icon={<Firebase />} />
         </Grid>
+        <Grid item xs={6} md={3}>
+          <SkillsBadge name="Git" icon={<Git />} />
+        </Grid>
+        {!isMobile && <Grid item md={3} />}
       </Grid>
     </Box>
   );
