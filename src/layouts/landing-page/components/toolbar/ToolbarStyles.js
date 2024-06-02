@@ -3,6 +3,6 @@ export const toolbarStyles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '24px 80px'
+    padding: { xs: '16px', md: '24px 80px' }
   }
 };

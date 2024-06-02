@@ -9,8 +9,9 @@ export default function SkillsSection() {
   return (
     <Box id="skills-section" sx={skillsSectionStyles.skillsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-        <Typography variant="displayText_regular">My</Typography>
-        <Typography variant="displayText_extra_bold">Skills</Typography>
+        <Typography variant="displayText_extra_bold">
+          <span style={{ fontWeight: 400 }}>My</span> skills
+        </Typography>
       </Box>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>

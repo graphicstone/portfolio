@@ -2,7 +2,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { colorPalette } from '../../../ColorPalette.js';
 
-export default function ExperienceCard({ companyLogo, jobTitle, tenure, description }) {
+export default function ExperienceCard({
+  companyLogo,
+  jobTitle,
+  tenure,
+  description,
+  backgroundColor = colorPalette.black
+}) {
   return (
     <Box
       id="experience-card"
@@ -12,16 +18,17 @@ export default function ExperienceCard({ companyLogo, jobTitle, tenure, descript
         display: 'flex',
         flexDirection: 'column',
         gap: '30px',
-        border: `1px solid ${colorPalette.light2}`,
-        borderRadius: '8px'
+        border: `1px solid ${colorPalette.zinc800}`,
+        backgroundColor: backgroundColor,
+        borderRadius: '10px'
       }}
     >
       <Box sx={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: { xs: 'column', md: 'row' },
         gap: '20px',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: { xs: 'flex-start', md: 'center' }
       }}>
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
           {companyLogo}

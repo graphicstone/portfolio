@@ -9,8 +9,9 @@ export default function AboutMeSection() {
       <AboutMeImage />
       <Box id="about-me-text" sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <Box id="about-me-title" sx={{ display: 'flex', flexDirection: 'row', gap: '16px', padding: '20px 0' }}>
-          <Typography variant="displayText_regular">About</Typography>
-          <Typography variant="displayText_extra_bold">Me</Typography>
+          <Typography variant="displayText_extra_bold">
+            <span style={{ fontWeight: 400 }}>About</span> Me
+          </Typography>
         </Box>
         <Typography variant="paragraph_p2_regular">
           With over 5 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating

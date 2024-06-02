@@ -26,11 +26,11 @@ export default function ProjectsCard({
           width: { xs: '100%', md: '50%' },
           display: 'flex',
           flexDirection: 'column',
-          gap: '28px'
+          gap: { xs: '16px', md: '28px' }
         }}>
         <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>{index}</Typography>
         <Typography variant="heading_h2_bold" sx={{ color: 'colors.white' }}>{name}</Typography>
-        <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.light4' }}>{description}</Typography>
+        <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.zinc500' }}>{description}</Typography>
         <Box
           id="projects-card-link"
           sx={{ cursor: 'pointer' }}

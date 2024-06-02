@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { colorPalette } from '../../../ColorPalette.js';
 
 export default function SkillsBadge({ icon, name }) {
   return (
@@ -11,7 +12,7 @@ export default function SkillsBadge({ icon, name }) {
         justifyContent: 'center',
         width: '100%',
         padding: '24px',
-        border: '2px solid #E0E0E0',
+        border: `2px solid ${colorPalette.black}`,
         gap: '8px'
       }}
     >

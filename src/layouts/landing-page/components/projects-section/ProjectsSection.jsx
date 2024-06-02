@@ -10,8 +10,9 @@ export default function ProjectsSection() {
   return (
     <Box id="projects-section" sx={projectsSectionStyles.projectsSection}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-        <Typography variant="displayText_regular" sx={{ color: 'colors.white' }}>My</Typography>
-        <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>Projects</Typography>
+        <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>
+          <span style={{ fontWeight: 400 }}>My</span> Projects
+        </Typography>
       </Box>
       <Box
         id="experience-cards"

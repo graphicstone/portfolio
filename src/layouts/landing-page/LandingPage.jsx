@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import HeroSection from './components/hero-section/HeroSection.jsx';
 import Toolbar from './components/toolbar/Toolbar.jsx';
+import HeroSection from './components/hero-section/HeroSection.jsx';
 import SkillsSection from './components/skills-section/SkillsSection.jsx';
 import ExperienceSection from './components/experience-section/ExperienceSection.jsx';
 import AboutMeSection from './components/about-me-section/AboutMeSection.jsx';
