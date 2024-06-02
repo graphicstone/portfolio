@@ -4,15 +4,15 @@ export const socialButtonStyles = {
   container: {
     height: '56px',
     width: '56px',
-    padding: '18px',
+    padding: '12px',
     display: 'flex',
     alignItems: 'center',
     border: '2px solid #000000',
     borderRadius: '8px',
     cursor: 'pointer',
     '& svg': {
-      width: '20px',
-      height: 'auto'
+      width: 'auto',
+      height: '32px'
     },
     '&:hover': {
       backgroundColor: colorPalette.black,
