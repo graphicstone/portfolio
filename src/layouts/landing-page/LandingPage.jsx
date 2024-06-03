@@ -6,6 +6,7 @@ import SkillsSection from './components/skills-section/SkillsSection.jsx';
 import ExperienceSection from './components/experience-section/ExperienceSection.jsx';
 import AboutMeSection from './components/about-me-section/AboutMeSection.jsx';
 import ProjectsSection from './components/projects-section/ProjectsSection.jsx';
+import ContactMeSection from './components/contact-me-section/ContactMeSection.jsx';
 
 function LandingPage() {
   return (
@@ -17,6 +18,7 @@ function LandingPage() {
         <ExperienceSection />
         <AboutMeSection />
         <ProjectsSection />
+        <ContactMeSection />
       </Box>
     </Box>
   );

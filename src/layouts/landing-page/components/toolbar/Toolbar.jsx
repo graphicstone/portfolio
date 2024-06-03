@@ -48,7 +48,16 @@ export default function Toolbar() {
 
   return (
     <Box id="toolbar" sx={toolbarStyles.container}>
-      <Typography variant="h6">Personal</Typography>
+      <Typography
+        variant="h6"
+        onClick={() => {
+          const element = document.getElementById('hero-section');
+          element?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        sx={{ cursor: 'pointer' }}
+      >
+        Home
+      </Typography>
       <Box id="toolbar-items" sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '24px' }}>
         {toolbarItems.map((item) => (
           <Box
