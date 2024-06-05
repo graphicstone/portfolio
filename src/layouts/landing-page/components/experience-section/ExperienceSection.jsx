@@ -2,7 +2,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { experienceSectionStyles } from './ExperienceSectionStyles.js';
 import ExperienceCard from './ExperienceCard.jsx';
-import JavaScript from '../../../../assets/svg/ic_javascript.svg?react';
+import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react';
+import Walrus from '../../../../assets/svg/experience/walrus.svg?react';
+import Defy from '../../../../assets/svg/experience/defy.svg?react';
+import RoverX from '../../../../assets/svg/experience/roverx.svg?react';
+import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react';
 import { colorPalette } from '../../../ColorPalette.js';
 
 export default function ExperienceSection() {
@@ -61,33 +65,33 @@ export default function ExperienceSection() {
         }}
       >
         <ExperienceCard
-          companyLogo={<JavaScript />}
+          companyLogo={<RenderNet />}
           jobTitle="Senior Frontend Developer at RenderNet (YC S21)"
           tenure="Nov 2023 - Present"
           description={workExperience.rendernet}
         />
         <ExperienceCard
-          companyLogo={<JavaScript />}
+          companyLogo={<RoverX />}
           jobTitle="Frontend Developer at RoverX (YC S21)"
           tenure="Aug 2022 - Nov 2023"
           description={workExperience.roverX}
           backgroundColor={colorPalette.zinc800}
         />
         <ExperienceCard
-          companyLogo={<JavaScript />}
+          companyLogo={<Defy />}
           jobTitle="Mobile Developer at Defy (YC S21)"
           tenure="Sep 2021 - Nov 2022"
           description={workExperience.defy}
         />
         <ExperienceCard
-          companyLogo={<JavaScript />}
+          companyLogo={<Walrus />}
           jobTitle="Android Developer at Walrus (YC S21)"
           tenure="May 2021 - Sep 2021"
           description={workExperience.walrus}
           backgroundColor={colorPalette.zinc800}
         />
         <ExperienceCard
-          companyLogo={<JavaScript />}
+          companyLogo={<GlobalLogic />}
           jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
           tenure="Jul 2019 - May 2021"
           description={workExperience.globalLogic}

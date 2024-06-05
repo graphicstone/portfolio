@@ -14,7 +14,7 @@ export default function AboutMeSection() {
           </Typography>
         </Box>
         <Typography variant="paragraph_p2_regular">
-          With over 5 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating
+          With around 5 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating
           and managing applications such as AI generative tools, NFT portfolio trackers, and crypto investment
           platforms.
           <br />

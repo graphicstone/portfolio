@@ -5,6 +5,7 @@ import ProjectsCard from './ProjectsCard.jsx';
 import ProjectCovid from '../../../../assets/webp/project_covid.png?react';
 import ProjectOneSide from '../../../../assets/webp/project_one_side.png?react';
 import ProjectUserInfoView from '../../../../assets/webp/project_user_info_view.png?react';
+import { Grid } from '@mui/material';
 
 export default function ProjectsSection() {
   return (
@@ -18,28 +19,35 @@ export default function ProjectsSection() {
         id="experience-cards"
         sx={{ width: '100%', padding: '40px 24px', display: 'flex', flexDirection: 'column', gap: '32px' }}
       >
-        <ProjectsCard
-          index="01"
-          name="Project OneSide"
-          description="OneSide is a unique mathematical puzzle game written in Kotlin where you have to swap rows and columns up and down to match the grid generated on a 3 x 3 board."
-          image={ProjectOneSide}
-          link="https://github.com/graphicstone/OneSide"
-        />
-        <ProjectsCard
-          index="02"
-          name="Project Covid 19 Support"
-          description="Coivd-19 Support is an android application written in Java in which one can see real time statistical and graphical data regarding the Covid-19 pandemic."
-          image={ProjectCovid}
-          link="https://github.com/graphicstone/Covid-19-Support"
-          reverse={true}
-        />
-        <ProjectsCard
-          index="03"
-          name="Project UserInfoView"
-          description="A UserInfoView for android to easily create a UserViewCard with title, subtitle, tag and image in it. You can easily customize the view through xml attributes that are present there."
-          image={ProjectUserInfoView}
-          link="https://github.com/graphicstone/UserInfoView"
-        />
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <ProjectsCard
+              index="01"
+              name="Project OneSide"
+              description="OneSide is a unique mathematical puzzle game written in Kotlin where you have to swap rows and columns up and down to match the grid generated on a 3 x 3 board."
+              image={ProjectOneSide}
+              link="https://github.com/graphicstone/OneSide"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ProjectsCard
+              index="02"
+              name="Project Covid 19 Support"
+              description="Coivd-19 Support is an android application written in Java in which one can see real time statistical and graphical data regarding the Covid-19 pandemic."
+              image={ProjectCovid}
+              link="https://github.com/graphicstone/Covid-19-Support"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ProjectsCard
+              index="03"
+              name="Project UserInfoView"
+              description="A UserInfoView for android to easily create a UserViewCard with title, subtitle, tag and image in it. You can easily customize the view through xml attributes that are present there."
+              image={ProjectUserInfoView}
+              link="https://github.com/graphicstone/UserInfoView"
+            />
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

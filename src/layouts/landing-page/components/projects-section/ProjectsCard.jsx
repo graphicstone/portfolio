@@ -13,17 +13,10 @@ export default function ProjectsCard({
       gap: { xs: '28px', md: '40px' },
       padding: { xs: '8px 0', md: '20px 0' }
     }}>
-      <Box id="projects-card-image" sx={{ width: { xs: '100%', md: '50%' }, borderRadius: '16px' }}>
-        <img
-          src={image}
-          alt={name}
-          style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
-        />
-      </Box>
       <Box
         id="projects-card-details"
         sx={{
-          width: { xs: '100%', md: '50%' },
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           gap: { xs: '16px', md: '28px' }

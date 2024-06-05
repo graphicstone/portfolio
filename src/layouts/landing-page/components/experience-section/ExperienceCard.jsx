@@ -30,8 +30,22 @@ export default function ExperienceCard({
         justifyContent: 'space-between',
         alignItems: { xs: 'flex-start', md: 'center' }
       }}>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-          {companyLogo}
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '30px',
+          alignItems: 'center'
+        }}>
+          <Box id="company-logo" sx={{
+            borderRadius: '8px',
+            '& svg': {
+              width: '50px',
+              height: 'auto',
+              borderRadius: '8px'
+            }
+          }}>
+            {companyLogo}
+          </Box>
           <Typography variant="heading_h4_semi_bold" sx={{ color: 'colors.white' }}>{jobTitle}</Typography>
         </Box>
         <Typography variant="heading_h6_semibold" sx={{ color: 'colors.white' }}>{tenure}</Typography>
