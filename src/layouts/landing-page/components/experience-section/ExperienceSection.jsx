@@ -36,10 +36,10 @@ export default function ExperienceSection() {
       'Implemented Strategies feature for user-specific NFT suggestions.'
     ],
     rendernet: [
-      'Led frontend team in developing AI generative application using ReactJS and Redux',
+      'Led frontend team in developing generative AI application using ReactJS and Redux',
       'Integrated Firebase for authentication, Datadog and Posthog for monitoring',
       'Utilized Pusher.js for real-time data updates',
-      'Developed Character Lab to create consistent characters with @mention functionality',
+      'Developed Character Lab to create consistent characters with @mention (similar to invoke user by username) functionality',
       'Developed canvas using Konva JS, later migrated to tldraw for advanced features like shapes, text and storyboard creations',
       'Implemented pagination in canvas to improve load time by 30%',
       'Integrated Stripe for subscriptions and credit purchases',

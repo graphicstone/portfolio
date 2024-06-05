@@ -20,12 +20,13 @@ export default function ContactForm() {
         }
         return errors;
       }}
-      onSubmit={async (values) => {
+      onSubmit={async (values, { resetForm }) => {
         await setDoc(doc(db, 'feedback', values?.email), {
           name: values?.name,
           website: values?.website,
           message: values?.message
         }).then(() => {
+          resetForm();
           toast('Feedback submitted successfully 🥳', { theme: 'dark' });
         }).catch(() => {
           toast('Error submitting feedback 😢', { theme: 'dark' });

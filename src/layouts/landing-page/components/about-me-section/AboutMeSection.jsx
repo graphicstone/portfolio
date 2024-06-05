@@ -15,11 +15,11 @@ export default function AboutMeSection() {
         </Box>
         <Typography variant="paragraph_p2_regular">
           With around 5 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating
-          and managing applications such as AI Generative tools, NFT portfolio trackers, and crypto investment
+          and managing applications such as generative AI tools, NFT portfolio trackers, and crypto investment
           platforms.
           <br />
           <br />
-          Successfully led the frontend development team, delivering high-quality products such as an AI Generative tool
+          Successfully led the frontend development team, delivering high-quality products such as an generative AI tool
           using ReactJS, enhancing user engagement with advanced canvas functionalities. Migrated a native Android app
           to Flutter, enabling iOS support and expanding user reach.
           <br />
