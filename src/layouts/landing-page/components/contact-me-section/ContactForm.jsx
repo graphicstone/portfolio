@@ -3,6 +3,9 @@ import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
 import { contactMeSectionStyles } from './ContactMeSectionStyle.js';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.js';
+import { toast } from 'react-toastify';
 
 export default function ContactForm() {
   return (
@@ -17,11 +20,16 @@ export default function ContactForm() {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      onSubmit={async (values, { setSubmitting }) => {
+        await setDoc(doc(db, 'feedback', values?.email), {
+          name: values?.name,
+          website: values?.website,
+          message: values?.message
+        }).then((data) => {
+          toast('Feedback submitted successfully 🥳', { theme: 'dark' });
+        }).catch((error) => {
+          toast('Error submitting feedback 😢', { theme: 'dark' });
+        });
       }}
     >{({
       values,
