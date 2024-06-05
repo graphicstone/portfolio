@@ -20,14 +20,14 @@ export default function ContactForm() {
         }
         return errors;
       }}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values) => {
         await setDoc(doc(db, 'feedback', values?.email), {
           name: values?.name,
           website: values?.website,
           message: values?.message
-        }).then((data) => {
+        }).then(() => {
           toast('Feedback submitted successfully 🥳', { theme: 'dark' });
-        }).catch((error) => {
+        }).catch(() => {
           toast('Error submitting feedback 😢', { theme: 'dark' });
         });
       }}
@@ -58,7 +58,7 @@ export default function ContactForm() {
         <TextField
           id="email-input"
           name="email"
-          label="Your name"
+          label="Your email"
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
