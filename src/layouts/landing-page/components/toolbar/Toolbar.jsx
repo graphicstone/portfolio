@@ -86,7 +86,7 @@ export default function Toolbar() {
           backgroundColor: 'colors.black'
         }}
         onClick={() => {
-          window.open('https://drive.google.com/file/d/1Wq0hp1qiY5gYM-pCes0-TIX_apt3KC9k/view', '_blank');
+          window.open('https://drive.google.com/file/d/1uPS17V9-VEtbRwbdEbI1nMQT7STukw0o/view?usp=sharing', '_blank');
         }}
       >
         Resume
