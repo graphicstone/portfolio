@@ -14,7 +14,7 @@ export default function AboutMeSection() {
           </Typography>
         </Box>
         <Typography variant="paragraph_p2_regular">
-          With around 5 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating
+          With around 6 years of frontend development experience, I specialize in ReactJS, Redux, and Flutter, creating
           and managing applications such as generative AI tools, NFT portfolio trackers, and crypto investment
           platforms.
           <br />
@@ -24,9 +24,10 @@ export default function AboutMeSection() {
           to Flutter, enabling iOS support and expanding user reach.
           <br />
           <br />
-          Implemented real-time data updates using Pusher.js and socket.io in multiple applications, ensuring seamless
-          user experiences. Achieved 90% test coverage with Playwright and Jest, resulting in robust and reliable code.
-          Optimized CI/CD pipelines with GitHub Actions and Google App Engine, reducing deployment times by 20%.
+          Transformed current React JS application into a desktop application using Electron JS giving more power
+          to the user. Achieved 90% test coverage with Playwright and Jest, resulting in robust and
+          reliable code. Optimized CI/CD pipelines with GitHub Actions and Firebase hosting, reducing deployment times
+          by 20%.
         </Typography>
       </Box>
     </Box>
