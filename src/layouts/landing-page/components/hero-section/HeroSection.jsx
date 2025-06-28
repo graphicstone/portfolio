@@ -40,7 +40,7 @@ export default function HeroSection() {
           variant="paragraph_p2_regular"
           sx={{ width: { xs: '100%', md: '50%' } }}
         >
-          With 5+ years in frontend development, I specialize in ReactJS, Android, and Flutter.
+          With 6+ years in frontend development, I specialize in ReactJS, Android, and Flutter.
           Skilled in real-time data, cross-platform apps, and deployment.
         </Typography>
         <Box id="social-section" sx={{ display: 'flex', flexDirection: 'row', gap: '16px' }}>
