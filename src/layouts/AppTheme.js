@@ -15,16 +15,7 @@ import { FontsEnum } from '../constants/FontsEnum.ts';
 const appThemeWithoutCustomStyles = createTheme({
   spacing: 8,
   breakpoints: {
-    keys: [
-      'xs',
-      'mm',
-      'sm',
-      'md',
-      'mobileUi',
-      'lg',
-      'xl',
-      'xxl'
-    ],
+    keys: ['xs', 'mm', 'sm', 'md', 'mobileUi', 'lg', 'xl', 'xxl'],
     values: {
       xs: 0,
       mm: 375,

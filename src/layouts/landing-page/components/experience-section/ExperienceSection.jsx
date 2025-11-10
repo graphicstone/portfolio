@@ -3,9 +3,6 @@ import Typography from '@mui/material/Typography';
 import { experienceSectionStyles } from './ExperienceSectionStyles.js';
 import ExperienceCard from './ExperienceCard.jsx';
 import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react';
-import Walrus from '../../../../assets/svg/experience/walrus.svg?react';
-import Defy from '../../../../assets/svg/experience/defy.svg?react';
-import RoverX from '../../../../assets/svg/experience/roverx.svg?react';
 import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react';
 import { colorPalette } from '../../../ColorPalette.js';
 
@@ -36,12 +33,16 @@ export default function ExperienceSection() {
       'Implemented Strategies feature for user-specific NFT suggestions.'
     ],
     rendernet: [
-      'Led frontend development of a generative AI platform using ReactJS, Redux, and Electron',
-      'Built and maintained the Affogato Client SDK, streamlining API integrations and developer workflows',
-      'Developed canvas from Konva.js, later migrated to tldraw and implemented spatial indexing for performant rendering of 2000+ elements',
-      'Established robust testing infrastructure with Jest, Playwright, and API mocking, decoupling backend dependencies',
-      'Integrated Datadog for real-time performance/error monitoring across environments',
-      'Automated Lighthouse audits in CI and optimized bundle performance via Webpack, reducing load time by 30%'
+      'Led frontend architecture for an AI creative platform using ReactJS, Redux, and Electron.',
+      'Architected npm workspaces monorepo: component-library, api-client, video-editor-sdk.',
+      'Designed a timeline video editor with normalized state (clips/tracks) and performant selectors.',
+      'Delivered cross-platform support (Web + Electron) with secure IPC and preload contextBridge.',
+      'Developed canvas using Konva.js, later migrated to tldraw; implemented spatial indexing for 2000+ elements.',
+      'Added Redux Persist + IndexedDB caching for 3–5× faster repeat loads.',
+      'Optimized bundles via code-splitting, lazy imports, memoized selectors, and Webpack tuning.',
+      'Testing stack: Jest, React Testing Library, Playwright, MSW; Storybook docs for component-library.',
+      'Observability: Datadog RUM/logs and structured telemetry; reduced MTTR.',
+      'CI/CD: Lighthouse in CI, GitHub Actions, Firebase Hosting; zero‑downtime deploys.'
     ]
   };
 
@@ -62,32 +63,71 @@ export default function ExperienceSection() {
           gap: { xs: '20px', md: '32px' }
         }}
       >
+        {/* Walrus tech inc. parent card with nested projects */}
         <ExperienceCard
           companyLogo={<RenderNet />}
-          jobTitle="Frontend Lead at Affogato AI (formerly RenderNet AI) (YC S21)"
-          tenure="Nov 2023 - Present"
-          description={workExperience.rendernet}
-        />
-        <ExperienceCard
-          companyLogo={<RoverX />}
-          jobTitle="Frontend Developer at RoverX (YC S21)"
-          tenure="Aug 2022 - Nov 2023"
-          description={workExperience.roverX}
+          jobTitle="Senior Frontend Engineer at Walrus Tech Inc. (YC S21)"
+          tenure="Jun 2021 - Present"
+          description={[]}
           backgroundColor={colorPalette.zinc800}
-        />
-        <ExperienceCard
-          companyLogo={<Defy />}
-          jobTitle="Mobile Developer at Defy (YC S21)"
-          tenure="Sep 2021 - Nov 2022"
-          description={workExperience.defy}
-        />
-        <ExperienceCard
-          companyLogo={<Walrus />}
-          jobTitle="Android Developer at Walrus (YC S21)"
-          tenure="May 2021 - Sep 2021"
-          description={workExperience.walrus}
-          backgroundColor={colorPalette.zinc800}
-        />
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Affogato AI / RenderNet */}
+            <Box>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+                Affogato AI (formerly RenderNet AI)
+              </Typography>
+              <ul>
+                {workExperience.rendernet.map((item, index) => (
+                  <li key={`rendernet-${index}`}>
+                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+            {/* RoverX */}
+            <Box>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+                RoverX
+              </Typography>
+              <ul>
+                {workExperience.roverX.map((item, index) => (
+                  <li key={`roverx-${index}`}>
+                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+            {/* Defy */}
+            <Box>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+                Defy
+              </Typography>
+              <ul>
+                {workExperience.defy.map((item, index) => (
+                  <li key={`defy-${index}`}>
+                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+            {/* Walrus */}
+            <Box>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+                Walrus
+              </Typography>
+              <ul>
+                {workExperience.walrus.map((item, index) => (
+                  <li key={`walrus-${index}`}>
+                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          </Box>
+        </ExperienceCard>
+
+        {/* GlobalLogic */}
         <ExperienceCard
           companyLogo={<GlobalLogic />}
           jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"

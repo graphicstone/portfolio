@@ -7,7 +7,8 @@ export default function ExperienceCard({
   jobTitle,
   tenure,
   description,
-  backgroundColor = colorPalette.black
+  backgroundColor = colorPalette.black,
+  children
 }) {
   return (
     <Box
@@ -23,43 +24,56 @@ export default function ExperienceCard({
         borderRadius: '10px'
       }}
     >
-      <Box sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        gap: '20px',
-        justifyContent: 'space-between',
-        alignItems: { xs: 'flex-start', md: 'center' }
-      }}>
-        <Box sx={{
+      <Box
+        sx={{
           display: 'flex',
-          flexDirection: 'row',
-          gap: '30px',
-          alignItems: 'center'
-        }}>
-          <Box id="company-logo" sx={{
-            borderRadius: '8px',
-            '& svg': {
-              width: '50px',
-              height: 'auto',
-              borderRadius: '8px'
-            }
-          }}>
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: '20px',
+          justifyContent: 'space-between',
+          alignItems: { xs: 'flex-start', md: 'center' }
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '30px',
+            alignItems: 'center'
+          }}
+        >
+          <Box
+            id="company-logo"
+            sx={{
+              borderRadius: '8px',
+              '& svg': {
+                width: '50px',
+                height: 'auto',
+                borderRadius: '8px'
+              }
+            }}
+          >
             {companyLogo}
           </Box>
-          <Typography variant="heading_h4_semi_bold" sx={{ color: 'colors.white' }}>{jobTitle}</Typography>
+          <Typography variant="heading_h4_semi_bold" sx={{ color: 'colors.white' }}>
+            {jobTitle}
+          </Typography>
         </Box>
-        <Typography variant="heading_h6_semibold" sx={{ color: 'colors.white' }}>{tenure}</Typography>
+        <Typography variant="heading_h6_semibold" sx={{ color: 'colors.white' }}>
+          {tenure}
+        </Typography>
       </Box>
       <Box sx={{ color: 'colors.white' }}>
-        <ul>
-          {description.map((item, index) => (
-            <li key={index}>
-              <Typography variant="paragraph_p2_regular">
-                {item}
-              </Typography>
-            </li>
-          ))}
-        </ul>
+        {children ? (
+          children
+        ) : (
+          <ul>
+            {description.map((item, index) => (
+              <li key={index}>
+                <Typography variant="paragraph_p2_regular">{item}</Typography>
+              </li>
+            ))}
+          </ul>
+        )}
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ export const experienceSectionStyles = {
     backgroundColor: 'colors.black',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '20px'
+    gap: '20px',
+    scrollMarginTop: { xs: '72px', md: '84px' }
   }
 };

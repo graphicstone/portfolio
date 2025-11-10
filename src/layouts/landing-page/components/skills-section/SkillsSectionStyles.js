@@ -5,6 +5,7 @@ export const skillsSectionStyles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '32px'
+    gap: '32px',
+    scrollMarginTop: { xs: '72px', md: '84px' }
   }
 };

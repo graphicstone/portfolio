@@ -5,17 +5,25 @@ export const contactMeSectionStyles = {
     display: 'flex',
     flexDirection: { xs: 'column', md: 'row' },
     alignItems: { xs: 'flex-start', md: 'center' },
-    gap: '48px'
+    gap: '48px',
+    scrollMarginTop: { xs: '72px', md: '84px' }
   },
   contactMeInfo: { display: 'flex', flexDirection: 'column', gap: '40px' },
   contactMeForm: {
-    display: 'flex', flexDirection: 'column', gap: '20px', width: '100%'
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    width: '100%'
   },
   contactMeFormActions: {
-    display: 'flex', flexDirection: 'row', gap: '20px'
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '20px'
   },
   contactMeText: {
-    display: 'flex', flexDirection: 'column', gap: '20px'
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px'
   },
   getInTouchButton: {
     textTransform: 'none',

@@ -6,6 +6,7 @@ export const projectsSectionStyles = {
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'colors.black',
-    gap: '20px'
+    gap: '20px',
+    scrollMarginTop: { xs: '72px', md: '84px' }
   }
 };

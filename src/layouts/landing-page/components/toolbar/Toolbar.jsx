@@ -58,7 +58,10 @@ export default function Toolbar() {
       >
         Home
       </Typography>
-      <Box id="toolbar-items" sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '24px' }}>
+      <Box
+        id="toolbar-items"
+        sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '24px' }}
+      >
         {toolbarItems.map((item) => (
           <Box
             id="toolbar-item"
@@ -86,7 +89,7 @@ export default function Toolbar() {
           backgroundColor: 'colors.black'
         }}
         onClick={() => {
-          window.open('https://drive.google.com/file/d/1uPS17V9-VEtbRwbdEbI1nMQT7STukw0o/view?usp=sharing', '_blank');
+          window.open('/resume.pdf', '_blank');
         }}
       >
         Resume
@@ -98,11 +101,7 @@ export default function Toolbar() {
       >
         <Menu />
       </Box>
-      <Drawer
-        anchor="right"
-        open={drawerState}
-        onClose={toggleDrawer(false)}
-      >
+      <Drawer anchor="right" open={drawerState} onClose={toggleDrawer(false)}>
         {drawerList()}
       </Drawer>
     </Box>

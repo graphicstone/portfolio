@@ -17,21 +17,47 @@ export default function ProjectsSection() {
       </Box>
       <Box
         id="experience-cards"
-        sx={{ width: '100%', padding: '40px 24px', display: 'flex', flexDirection: 'column', gap: '32px' }}
+        sx={{
+          width: '100%',
+          padding: '40px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px'
+        }}
       >
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <ProjectsCard
               index="01"
+              name="Leaf AI"
+              description="Universal LLM interface with Next.js + FastAPI, supporting OpenAI, Anthropic & Gemini, with real-time chat"
+              image={ProjectOneSide}
+              link="https://github.com/graphicstone/project-leaf"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ProjectsCard
+              index="02"
               name="transformer-playground"
-              description="A browser-based application that leverages the power of machine learning models using Transformers.js"
+              description="Browser-based ML playground using Transformer.js for client-side AI, no server needed"
               image={ProjectOneSide}
               link="https://github.com/graphicstone/transformer-js-playground"
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <ProjectsCard
-              index="02"
+              index="03"
+              name="Video Editor SDK"
+              description="React and TypeScript-based video editor SDK with real-time preview, timeline editing, and audio synchronisation."
+              image={ProjectOneSide}
+              link="https://github.com/graphicstone/video-editor"
+            />
+          </Grid>
+
+          {/* Keep older projects below */}
+          <Grid item xs={12} md={6}>
+            <ProjectsCard
+              index="04"
               name="Project OneSide"
               description="OneSide is a unique mathematical puzzle game written in Kotlin where you have to swap rows and columns up and down to match the grid generated on a 3 x 3 board."
               image={ProjectOneSide}
@@ -40,7 +66,7 @@ export default function ProjectsSection() {
           </Grid>
           <Grid item xs={12} md={6}>
             <ProjectsCard
-              index="03"
+              index="05"
               name="Project Covid 19 Support"
               description="Coivd-19 Support is an android application written in Java in which one can see real time statistical and graphical data regarding the Covid-19 pandemic."
               image={ProjectCovid}
@@ -49,7 +75,7 @@ export default function ProjectsSection() {
           </Grid>
           <Grid item xs={12} md={6}>
             <ProjectsCard
-              index="04"
+              index="06"
               name="Project UserInfoView"
               description="A UserInfoView for android to easily create a UserViewCard with title, subtitle, tag and image in it. You can easily customize the view through xml attributes that are present there."
               image={ProjectUserInfoView}

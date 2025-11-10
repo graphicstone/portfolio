@@ -8,7 +8,8 @@ export const heroSectionStyles = {
     position: 'relative',
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
-    gap: '48px'
+    gap: '48px',
+    scrollMarginTop: { xs: '72px', md: '84px' }
   },
   heroContent: {
     width: '100%',

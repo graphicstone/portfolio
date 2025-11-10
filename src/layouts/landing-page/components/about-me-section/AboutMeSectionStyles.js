@@ -6,6 +6,7 @@ export const aboutMeSectionStyles = {
     flexDirection: { xs: 'column', md: 'row' },
     alignItems: 'center',
     gap: '32px',
+    scrollMarginTop: { xs: '72px', md: '84px' },
     '& svg': {
       width: '100%'
     }

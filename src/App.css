@@ -1,34 +1,34 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .App {
-    text-align: center;
-    overflow: hidden;
-    background-color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
 ul {
-    margin-block-start: 0;
-    margin-block-end: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-track {
-    padding: 8px;
-    background-color: #191919; /* dark5 */
+  padding: 8px;
+  background-color: #191919; /* dark5 */
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    border: 4px solid #191919; /* dark5 */
-    background: #2C2C2C; /* dark3 */
+  border-radius: 100px;
+  border: 4px solid #191919; /* dark5 */
+  background: #2c2c2c; /* dark3 */
 }
 
 ::-webkit-scrollbar-corner {
-    background-color: #252525; /* dark6 */
+  background-color: #252525; /* dark6 */
 }
