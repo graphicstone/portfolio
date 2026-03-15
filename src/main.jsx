@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { ThemeProvider } from '@mui/material';
-import appTheme from './layouts/AppTheme.js';
+import appTheme from './config/AppTheme.js';
 import Lenis from 'lenis';
 
 // Smooth scroll — runs independently of React lifecycle

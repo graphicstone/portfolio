@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
 import { SiGithub, SiLinkedin, SiMedium, SiStackoverflow } from 'react-icons/si';
-import SocialButton from '../../../components/social-button/SocialButton.jsx';
+import SocialButton from '../../../../components/social-button/SocialButton.jsx';
 import Galaxy from '../../../../components/Galaxy/Galaxy.jsx';
 import DecryptedText from '../../../../components/DecryptedText/DecryptedText.jsx';
 

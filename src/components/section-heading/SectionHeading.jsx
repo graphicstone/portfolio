@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import BlurText from '../../../components/BlurText/BlurText.jsx';
+import BlurText from '../BlurText/BlurText.jsx';
 
 /**
  * Animated section heading used by every section.

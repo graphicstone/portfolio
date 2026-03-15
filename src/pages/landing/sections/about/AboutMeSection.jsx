@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
-import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
+import SectionHeading from '../../../../components/section-heading/SectionHeading.jsx';
 
 const stats = [
   { value: '7+', label: 'Years of\nExperience' },

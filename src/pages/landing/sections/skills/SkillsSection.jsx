@@ -31,8 +31,8 @@ import {
   FiTool,
 } from 'react-icons/fi';
 import SkillsBadge from './SkillsBadge.jsx';
-import MarqueeStrip from '../../../components/marquee/MarqueeStrip.jsx';
-import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
+import MarqueeStrip from '../../../../components/marquee/MarqueeStrip.jsx';
+import SectionHeading from '../../../../components/section-heading/SectionHeading.jsx';
 
 const webSkills = [
   { name: 'React', icon: <SiReact />, color: '#61DAFB' },

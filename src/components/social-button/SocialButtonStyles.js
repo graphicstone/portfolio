@@ -1,4 +1,4 @@
-import { colorPalette } from '../../ColorPalette.js';
+import { colorPalette } from '../../config/ColorPalette.js';
 
 export const socialButtonStyles = {
   container: {

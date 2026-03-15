@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { colorPalette } from './ColorPalette';
-import { FontsEnum } from '../constants/FontsEnum.ts';
+import { FontsEnum } from '../constants/FontsEnum.js';
 
 /*
   FONT WEIGHTS MAPPING

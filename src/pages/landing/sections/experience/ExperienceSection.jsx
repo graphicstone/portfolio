@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { motion, useInView } from 'framer-motion';
-import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
+import SectionHeading from '../../../../components/section-heading/SectionHeading.jsx';
 import ExperienceCard from './ExperienceCard.jsx';
 import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react';
 import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react';

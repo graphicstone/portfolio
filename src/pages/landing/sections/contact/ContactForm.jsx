@@ -2,9 +2,9 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
-import { contactMeSectionStyles } from './ContactMeSectionStyle.js';
+import { contactMeSectionStyles } from './ContactMeSectionStyles.js';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../../firebase.js';
+import { db } from '../../../../config/firebase.js';
 import { toast } from 'react-toastify';
 
 export default function ContactForm() {

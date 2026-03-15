@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { projectsSectionStyles } from './ProjectsSectionStyles.js';
 import ProjectsCard from './ProjectsCard.jsx';
 import { Grid } from '@mui/material';
-import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
+import SectionHeading from '../../../../components/section-heading/SectionHeading.jsx';
 
 export default function ProjectsSection() {
   return (

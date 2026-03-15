@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
+import SectionHeading from '../../../../components/section-heading/SectionHeading.jsx';
 import ContactForm from './ContactForm.jsx';
 
 export default function ContactMeSection() {
