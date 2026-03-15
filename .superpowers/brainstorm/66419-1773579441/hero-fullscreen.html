@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero — Full Screen Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+  .label-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    background: #111;
+    border-bottom: 1px solid #1e1e1e;
+    font-size: 12px; color: #71717a;
+  }
+  .label-bar strong { color: #f5f5f5; }
+  .toggle-btn {
+    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+    color: #a5b4fc; padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .toggle-btn:hover { background: rgba(99,102,241,0.2); }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: calc(100vh - 48px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px;
+  }
+  canvas#bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* Gradient fade on left so tags don't compete with text */
+  .fade-left {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 480px;
+    background: linear-gradient(to right, #0d0d0d 40%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .overline {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    color: #6366F1; text-transform: uppercase;
+  }
+  .name {
+    font-size: clamp(52px, 7vw, 80px);
+    font-weight: 900; line-height: 0.92;
+    letter-spacing: -0.03em; color: #f5f5f5;
+  }
+  .tagline {
+    font-size: 16px; color: #71717a; line-height: 1.75; max-width: 460px;
+  }
+  .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: #6366F1; color: #fff; padding: 12px 28px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+  }
+  .social-row { display: flex; gap: 10px; }
+  .social-icon {
+    width: 44px; height: 44px; border: 1px solid #2a2a2a; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #52525b; cursor: pointer;
+  }
+
+  /* Tag density slider */
+  .controls {
+    position: absolute;
+    bottom: 20px; right: 24px;
+    z-index: 10;
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    border: 1px solid #2a2a2a; border-radius: 99px;
+    padding: 8px 16px; font-size: 11px; color: #52525b;
+  }
+  .controls label { color: #71717a; }
+  input[type=range] { width: 80px; accent-color: #6366F1; }
+</style>
+</head>
+<body>
+
+<div class="label-bar">
+  <span><strong>Full-screen preview</strong> — tags + dust across the entire hero background</span>
+  <button class="toggle-btn" onclick="toggleFade()">Toggle text fade: <span id="fade-label">ON</span></button>
+</div>
+
+<div class="hero">
+  <canvas id="bg"></canvas>
+  <div class="fade-left" id="fade-overlay"></div>
+
+  <div class="hero-content">
+    <div class="overline">Senior Frontend Engineer · 7 Years</div>
+    <div class="name">Harishiv<br>Singh.</div>
+    <div class="tagline">I build scalable, performant products across web, desktop and mobile — React, TypeScript, Electron and Flutter.</div>
+    <div class="actions">
+      <button class="btn-primary">Download Resume ↓</button>
+      <div class="social-row">
+        <div class="social-icon">gh</div>
+        <div class="social-icon">in</div>
+        <div class="social-icon">so</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <label>Tag density</label>
+    <input type="range" min="4" max="14" value="9" id="density-slider" oninput="updateDensity(this.value)">
+    <span id="density-val">9</span>
+  </div>
+</div>
+
+<script>
+const ALL_TAGS = ['React', 'TypeScript', 'Redux', 'Electron', 'Flutter', 'Kotlin', 'Playwright', 'Node.js', 'GraphQL', 'Vite', 'CSS', 'Jest', 'Figma', 'Git'];
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+let W, H, dust, floatingTags, targetCount = 9;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  init();
+}
+
+function init() {
+  // Dust
+  dust = Array.from({ length: 55 }, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: 0.6 + Math.random() * 1.8,
+    vx: (Math.random() - 0.5) * 0.15,
+    vy: -0.08 - Math.random() * 0.18,
+    alpha: 0.06 + Math.random() * 0.2,
+  }));
+
+  rebuildTags();
+}
+
+function rebuildTags() {
+  floatingTags = ALL_TAGS.slice(0, targetCount).map((tag, i) => {
+    const cols = 4;
+    const rows = Math.ceil(targetCount / cols);
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    // Spread across full canvas, but avoid far-left text area on wide screens
+    const leftMargin = W > 700 ? W * 0.22 : W * 0.05;
+    const rightMargin = W * 0.96;
+    const topMargin = H * 0.1;
+    const bottomMargin = H * 0.9;
+    return {
+      tag,
+      baseX: leftMargin + (col / (cols - 1)) * (rightMargin - leftMargin) + (Math.random() - 0.5) * 60,
+      baseY: topMargin + (row / Math.max(rows - 1, 1)) * (bottomMargin - topMargin) + (Math.random() - 0.5) * 40,
+      ox: Math.random() * Math.PI * 2,
+      oy: Math.random() * Math.PI * 2,
+      speed: 0.0025 + Math.random() * 0.003,
+      amp: 18 + Math.random() * 22,
+    };
+  });
+}
+
+let t = 0;
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  t++;
+
+  // Dust
+  dust.forEach(d => {
+    d.x += d.vx; d.y += d.vy;
+    if (d.y < -3) { d.y = H + 3; d.x = Math.random() * W; }
+    if (d.x < 0) d.x = W; if (d.x > W) d.x = 0;
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(99,102,241,${d.alpha})`;
+    ctx.fill();
+  });
+
+  // Floating tags
+  floatingTags.forEach(p => {
+    const x = p.baseX + Math.sin(t * p.speed + p.ox) * p.amp;
+    const y = p.baseY + Math.sin(t * p.speed * 0.65 + p.oy) * (p.amp * 0.55);
+
+    ctx.font = '600 11px -apple-system, sans-serif';
+    const tw = ctx.measureText(p.tag).width;
+    const pw = tw + 20, ph = 26;
+    const bx = x - pw/2, by = y - ph/2;
+
+    ctx.shadowColor = 'rgba(99,102,241,0.25)';
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = 'rgba(13,13,13,0.82)';
+    rr(ctx, bx, by, pw, ph, 6); ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.strokeStyle = 'rgba(99,102,241,0.18)';
+    ctx.lineWidth = 1;
+    rr(ctx, bx, by, pw, ph, 6); ctx.stroke();
+
+    ctx.fillStyle = 'rgba(165,180,252,0.85)';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(p.tag, x, y);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+function rr(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+let fadeOn = true;
+function toggleFade() {
+  fadeOn = !fadeOn;
+  document.getElementById('fade-overlay').style.opacity = fadeOn ? '1' : '0';
+  document.getElementById('fade-label').textContent = fadeOn ? 'ON' : 'OFF';
+}
+
+function updateDensity(val) {
+  targetCount = parseInt(val);
+  document.getElementById('density-val').textContent = val;
+  rebuildTags();
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+
+</body>
+</html>

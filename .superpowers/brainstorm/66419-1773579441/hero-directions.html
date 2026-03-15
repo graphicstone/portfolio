@@ -1,0 +1,166 @@
+<h2>Hero Section — 3 Directions</h2>
+<p class="subtitle">All keep your name + tagline. Pick the direction that feels right.</p>
+
+<style>
+  .hero-mock {
+    background: #0d0d0d;
+    border-radius: 12px;
+    padding: 36px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .overline { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #6366F1; text-transform: uppercase; margin-bottom: 14px; }
+  .hero-name { font-size: 42px; font-weight: 900; line-height: 0.92; letter-spacing: -0.03em; color: #f5f5f5; margin-bottom: 14px; }
+  .hero-tagline { font-size: 13px; color: #71717a; line-height: 1.7; max-width: 320px; margin-bottom: 20px; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 8px; background: #6366F1; color: #fff; padding: 9px 20px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+
+  /* Option A — Code window */
+  .code-window {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'Menlo', 'Monaco', monospace;
+    font-size: 10px;
+  }
+  .code-titlebar { background: #1a1a1a; padding: 7px 12px; display: flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .code-body { padding: 14px 16px; line-height: 1.8; color: #71717a; }
+  .kw { color: #818cf8; } .fn { color: #a5b4fc; } .str { color: #6ee7b7; } .cm { color: #3f3f46; }
+  .orb-a { position: absolute; top: -40px; right: 260px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%); pointer-events: none; }
+
+  /* Option B — Tech constellation */
+  .constellation { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); width: 200px; height: 180px; }
+  .tech-badge {
+    position: absolute;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #a1a1aa;
+    white-space: nowrap;
+  }
+  .tech-badge.lit { border-color: rgba(99,102,241,0.4); color: #a5b4fc; background: rgba(99,102,241,0.08); }
+  .connect-line { position: absolute; width: 60px; height: 1px; background: linear-gradient(to right, rgba(99,102,241,0.2), transparent); }
+
+  /* Option C — Typographic enhancements */
+  .name-gradient { background: linear-gradient(135deg, #f5f5f5 40%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .chip { background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); border-radius: 20px; padding: 4px 12px; font-size: 10px; font-weight: 600; color: #a5b4fc; }
+  .chip.neutral { background: rgba(255,255,255,0.04); border-color: #2a2a2a; color: #52525b; }
+  .available-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px rgba(52,211,153,0.6); margin-right: 6px; vertical-align: middle; }
+  .typewriter-line { color: #6366F1; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 10px; }
+  .orb-c1 { position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%); pointer-events: none; }
+</style>
+
+<div class="cards" style="display: flex; flex-direction: column; gap: 20px; max-width: 760px;">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)" style="padding: 0; overflow: hidden; border-radius: 12px;">
+    <div class="card-image" style="padding: 0;">
+      <div class="hero-mock">
+        <div class="orb-a"></div>
+        <div style="max-width: 340px;">
+          <div class="overline">Senior Frontend Engineer · 7 Years</div>
+          <div class="hero-name">Harishiv<br>Singh.</div>
+          <div class="hero-tagline">Building scalable products across web, desktop and mobile.</div>
+          <div class="hero-cta">↓ Download Resume</div>
+        </div>
+        <div class="code-window">
+          <div class="code-titlebar">
+            <div class="dot" style="background:#ef4444"></div>
+            <div class="dot" style="background:#f59e0b"></div>
+            <div class="dot" style="background:#22c55e"></div>
+            <span style="color:#3f3f46; font-size:9px; margin-left:4px;">stack.tsx</span>
+          </div>
+          <div class="code-body">
+            <div><span class="kw">const</span> <span class="fn">stack</span> = {</div>
+            <div>&nbsp;&nbsp;<span class="str">'frontend'</span>: [</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'React'</span>, <span class="str">'TS'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'Redux'</span>,</div>
+            <div>&nbsp;&nbsp;],</div>
+            <div>&nbsp;&nbsp;<span class="str">'desktop'</span>: <span class="str">'Electron'</span>,</div>
+            <div>&nbsp;&nbsp;<span class="str">'mobile'</span>: <span class="str">'Flutter'</span>,</div>
+            <div>}</div>
+            <div style="margin-top:6px"><span class="cm">// 7 yrs · 3 platforms</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Code window</h3>
+      <p>A styled code snippet on the right showing your tech stack. Classic dev portfolio look. Immediately communicates "engineer" without needing to read the tagline.</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)" style="padding: 0; overflow: hidden; border-radius: 12px;">
+    <div class="card-image" style="padding: 0;">
+      <div class="hero-mock">
+        <div style="max-width: 340px;">
+          <div class="overline">Senior Frontend Engineer · 7 Years</div>
+          <div class="hero-name">Harishiv<br>Singh.</div>
+          <div class="hero-tagline">Building scalable products across web, desktop and mobile.</div>
+          <div class="hero-cta">↓ Download Resume</div>
+        </div>
+        <div class="constellation">
+          <div class="tech-badge lit" style="top: 10px; left: 50px;">React</div>
+          <div class="tech-badge lit" style="top: 50px; left: 0px;">TypeScript</div>
+          <div class="tech-badge" style="top: 90px; left: 60px;">Electron</div>
+          <div class="tech-badge" style="top: 130px; left: 20px;">Flutter</div>
+          <div class="tech-badge" style="top: 40px; left: 130px;">Redux</div>
+          <div class="tech-badge" style="top: 100px; left: 120px;">Kotlin</div>
+          <div style="position:absolute; top:28px; left:105px; width:50px; height:1px; background:rgba(99,102,241,0.15); transform: rotate(20deg);"></div>
+          <div style="position:absolute; top:68px; left:85px; width:55px; height:1px; background:rgba(99,102,241,0.1); transform: rotate(-10deg);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Floating tech badges</h3>
+      <p>Tech stack names float on the right as soft badge clusters. Subtle connecting lines. Animates in on load. More abstract and visual than Option A — less code-literal.</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)" style="padding: 0; overflow: hidden; border-radius: 12px;">
+    <div class="card-image" style="padding: 0;">
+      <div class="hero-mock">
+        <div class="orb-c1"></div>
+        <div style="max-width: 520px;">
+          <div class="overline">Available for opportunities</div>
+          <div style="margin-bottom: 14px;">
+            <div class="typewriter-line">Technical Lead · React · TypeScript · Flutter</div>
+            <div class="hero-name"><span class="name-gradient">Harishiv<br>Singh.</span></div>
+          </div>
+          <div class="stat-chips">
+            <div class="chip"><span class="available-dot"></span>Open to work</div>
+            <div class="chip neutral">7 yrs experience</div>
+            <div class="chip neutral">3 platforms</div>
+            <div class="chip neutral">Fintech · AI · Web3</div>
+          </div>
+          <div class="hero-tagline" style="max-width: 460px;">Building scalable, performant products across web, desktop and mobile — React, TypeScript, Electron and Flutter.</div>
+          <div class="hero-cta">↓ Download Resume</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Typographic + stat chips</h3>
+      <p>No right-side element. Instead: gradient/shimmer on the name, a scrolling role typewriter line above it, and small info chips below (open to work, years, domains). All information, no decoration.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top: 16px;">These are static previews — animations described in the card text. Click one to select, then tell me what you think.</p>

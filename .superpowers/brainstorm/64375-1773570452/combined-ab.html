@@ -1,0 +1,134 @@
+<h2>Tech Stack Tags + Accordion — Combined</h2>
+<p class="subtitle">Cards collapsed by default showing title, company, tenure & tech tags. Click to expand bullets. Does this feel right?</p>
+
+<style>
+  .exp-card { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; margin-bottom: 12px; transition: border-color 0.2s; }
+  .exp-card.active-role { border: 1px solid rgba(99,102,241,0.45); }
+  .exp-card.active-role .card-top-edge { height: 2px; background: linear-gradient(to right, transparent, #6366F1, transparent); }
+  .exp-header { padding: 16px 20px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; gap: 12px; }
+  .exp-header:hover { background: rgba(255,255,255,0.02); }
+  .exp-logo { width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .exp-meta { flex: 1; }
+  .exp-title { font-size: 14px; color: #f5f5f5; font-weight: 600; margin-bottom: 2px; }
+  .exp-company { font-size: 12px; color: #6366F1; font-weight: 600; margin-bottom: 10px; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag { font-size: 10px; font-weight: 600; color: #a5b4fc; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); padding: 2px 8px; border-radius: 4px; letter-spacing: 0.03em; }
+  .tag.muted { color: #52525b; background: rgba(255,255,255,0.03); border-color: #2a2a2a; }
+  .expand-btn { font-size: 10px; color: #555; border: 1px solid #2a2a2a; border-radius: 4px; padding: 4px 8px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .expand-btn.open { color: #6366F1; border-color: rgba(99,102,241,0.3); }
+  .exp-body { border-top: 1px solid #1e1e1e; padding: 14px 20px; display: flex; flex-direction: column; gap: 4px; }
+  .bullet { font-size: 12px; color: #a1a1aa; display: flex; gap: 8px; line-height: 1.5; }
+  .bullet-dash { color: #6366F1; flex-shrink: 0; }
+  .current-badge { display: flex; align-items: center; gap: 5px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); border-radius: 20px; padding: 3px 10px 3px 7px; }
+  .current-dot { width: 6px; height: 6px; border-radius: 50%; background: #6366F1; box-shadow: 0 0 8px rgba(99,102,241,0.8); }
+  .current-text { font-size: 10px; font-weight: 700; color: #818cf8; letter-spacing: 0.06em; }
+  .subrole-title { font-size: 12px; font-weight: 700; color: #d4d4d4; margin: 8px 0 4px; padding-bottom: 4px; border-bottom: 1px solid #1e1e1e; }
+</style>
+
+<div style="max-width: 680px;">
+
+  <!-- Card 1: KreditBee (active, expanded by default) -->
+  <div class="exp-card active-role">
+    <div class="card-top-edge"></div>
+    <div class="exp-header">
+      <div class="exp-logo" style="background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);">
+        <span style="font-size: 11px; font-weight: 800; color: #6366F1;">KB</span>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-title">Lead Frontend Engineer (UPI)</div>
+        <div class="exp-company">KreditBee · Jan 2026 – Present</div>
+        <div class="exp-tags">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Redux</span>
+          <span class="tag">UPI / Fintech</span>
+          <span class="tag">System Design</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <div class="current-badge">
+          <div class="current-dot"></div>
+          <span class="current-text">CURRENT</span>
+        </div>
+        <div class="expand-btn open">▲ hide</div>
+      </div>
+    </div>
+    <div class="exp-body">
+      <div class="bullet"><span class="bullet-dash">—</span> Architecting and owning the frontend systems for a high-scale fintech UPI payment platform.</div>
+      <div class="bullet"><span class="bullet-dash">—</span> Driving technical decisions, code standards, and delivery across the frontend org.</div>
+      <div class="bullet"><span class="bullet-dash">—</span> Collaborating with product, design, and platform teams on system design.</div>
+      <div class="bullet"><span class="bullet-dash">—</span> Building performant, accessible interfaces for millions of users.</div>
+    </div>
+  </div>
+
+  <!-- Card 2: Walrus (collapsed) -->
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-logo" style="background: #1a1a1a; border: 1px solid #2a2a2a; font-size: 20px; line-height: 1;">🦭</div>
+      <div class="exp-meta">
+        <div class="exp-title">Senior Frontend Engineer</div>
+        <div class="exp-company" style="color: #888;">Walrus Tech (YC S21) · Jun 2021 – Dec 2025</div>
+        <div class="exp-tags">
+          <span class="tag muted">React</span>
+          <span class="tag muted">Electron</span>
+          <span class="tag muted">Redux</span>
+          <span class="tag muted">Flutter</span>
+          <span class="tag muted">Kotlin</span>
+          <span class="tag muted">Playwright</span>
+        </div>
+      </div>
+      <div class="expand-btn">▼ 4 projects</div>
+    </div>
+    <!-- Collapsed — no body shown -->
+  </div>
+
+  <!-- Card 3: GlobalLogic (collapsed) -->
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-logo" style="background: #1a1a1a; border: 1px solid #2a2a2a; font-size: 9px; font-weight: 700; color: #555; text-align: center; line-height: 1.2; padding: 4px;">GL</div>
+      <div class="exp-meta">
+        <div class="exp-title">Software Engineer</div>
+        <div class="exp-company" style="color: #888;">GlobalLogic (Hitachi) · Jul 2019 – May 2021</div>
+        <div class="exp-tags">
+          <span class="tag muted">Android</span>
+          <span class="tag muted">Kotlin</span>
+          <span class="tag muted">MVVM</span>
+        </div>
+      </div>
+      <div class="expand-btn">▼ 2 bullets</div>
+    </div>
+    <!-- Collapsed — no body shown -->
+  </div>
+
+  <!-- Walrus expanded (shown below for reference) -->
+  <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #1e1e1e;">
+    <p class="subtitle" style="font-size: 11px; margin-bottom: 12px;">↓ How Walrus looks when expanded (4 sub-project sections):</p>
+    <div class="exp-card" style="border-color: rgba(99,102,241,0.2);">
+      <div class="exp-header">
+        <div class="exp-logo" style="background: #1a1a1a; border: 1px solid #2a2a2a; font-size: 20px;">🦭</div>
+        <div class="exp-meta">
+          <div class="exp-title">Senior Frontend Engineer</div>
+          <div class="exp-company">Walrus Tech (YC S21) · Jun 2021 – Dec 2025</div>
+          <div class="exp-tags">
+            <span class="tag">React</span><span class="tag">Electron</span><span class="tag">Redux</span><span class="tag">Flutter</span><span class="tag">Kotlin</span>
+          </div>
+        </div>
+        <div class="expand-btn open">▲ hide</div>
+      </div>
+      <div class="exp-body">
+        <div class="subrole-title">Affogato AI (formerly RenderNet AI)</div>
+        <div class="bullet"><span class="bullet-dash">—</span> Led frontend architecture for an AI creative platform using ReactJS, Redux, and Electron.</div>
+        <div class="bullet"><span class="bullet-dash">—</span> Architected npm workspaces monorepo: component-library, api-client, video-editor-sdk.</div>
+        <div class="subrole-title">RoverX</div>
+        <div class="bullet"><span class="bullet-dash">—</span> Built NFT portfolio tracking app for web (ReactJS + Redux) and mobile (Flutter + BloC).</div>
+        <div class="subrole-title">Defy</div>
+        <div class="bullet"><span class="bullet-dash">—</span> Migrated native Android app to cross-platform Flutter. Integrated Firebase + Crashlytics.</div>
+        <div class="subrole-title">Walrus</div>
+        <div class="bullet"><span class="bullet-dash">—</span> Developed virtual card feature and user signature functionality in Kotlin.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top: 20px; font-size: 12px;">Does this direction work? I can also add the race track visual treatment on top of this. Let me know.</p>

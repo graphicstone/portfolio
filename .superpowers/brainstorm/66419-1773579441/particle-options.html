@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero Particle Options</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 24px; }
+  h2 { font-size: 18px; font-weight: 700; color: #f5f5f5; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #71717a; margin-bottom: 28px; }
+
+  .demos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .demo-wrap {
+    border: 2px solid #2a2a2a;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .demo-wrap:hover { border-color: rgba(99,102,241,0.5); }
+  .demo-wrap.selected { border-color: #6366F1; }
+
+  .demo-label {
+    background: #111;
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid #1e1e1e;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .demo-label h3 { font-size: 14px; font-weight: 700; color: #f5f5f5; }
+  .demo-label p { font-size: 11px; color: #71717a; margin-top: 2px; }
+
+  /* Shared hero layout */
+  .hero {
+    position: relative;
+    height: 280px;
+    background: #0d0d0d;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+  }
+  .hero-text { position: relative; z-index: 10; max-width: 240px; flex-shrink: 0; }
+  .overline { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; color: #6366F1; text-transform: uppercase; margin-bottom: 10px; }
+  .name { font-size: 36px; font-weight: 900; line-height: 0.92; letter-spacing: -0.03em; color: #f5f5f5; margin-bottom: 10px; }
+  .tagline { font-size: 11px; color: #52525b; line-height: 1.6; margin-bottom: 14px; }
+  .cta { display: inline-block; background: #6366F1; color: #fff; padding: 7px 16px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+
+  /* canvas fills right side */
+  .particle-canvas {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    left: 240px;
+    z-index: 1;
+  }
+
+  .demo-desc {
+    background: #111;
+    padding: 12px 20px;
+    border-top: 1px solid #1e1e1e;
+    font-size: 11px;
+    color: #71717a;
+    line-height: 1.6;
+  }
+  .demo-desc strong { color: #a1a1aa; }
+
+  .select-bar {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 99px;
+    padding: 10px 24px; font-size: 12px; color: #71717a;
+    transition: all 0.2s; pointer-events: none; opacity: 0;
+  }
+  .select-bar.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<h2>Particle Effect — Two Directions</h2>
+<p class="subtitle">Both use your tech stack. Live previews below — click a card to select.</p>
+
+<div class="demos">
+  <!-- Option 1: Tags as particles -->
+  <div class="demo-wrap" id="card-1" onclick="selectCard('1')">
+    <div class="demo-label">
+      <div>
+        <h3>Option 1 — Tags as particles</h3>
+        <p>Tags drift freely, connect with lines when near</p>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="overline">Senior Frontend Engineer · 7 Yrs</div>
+        <div class="name">Harishiv<br>Singh.</div>
+        <div class="tagline">Building scalable products across web, desktop and mobile.</div>
+        <div class="cta">Download Resume</div>
+      </div>
+      <canvas id="canvas1" class="particle-canvas"></canvas>
+    </div>
+    <div class="demo-desc">
+      <strong>Feel:</strong> Tags are the particles — React, TypeScript, Flutter etc. each float freely across the right half. When two tags drift close, a faint line connects them. Classic particles.js network but with your actual stack labels. Interactive — tags gently repel from your mouse cursor.
+    </div>
+  </div>
+
+  <!-- Option 2: Floating tags + particle dust -->
+  <div class="demo-wrap" id="card-2" onclick="selectCard('2')">
+    <div class="demo-label">
+      <div>
+        <h3>Option 2 — Tags float, particles behind</h3>
+        <p>Tags in fixed gentle orbit, tiny dust particles in background</p>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="overline">Senior Frontend Engineer · 7 Yrs</div>
+        <div class="name">Harishiv<br>Singh.</div>
+        <div class="tagline">Building scalable products across web, desktop and mobile.</div>
+        <div class="cta">Download Resume</div>
+      </div>
+      <canvas id="canvas2" class="particle-canvas"></canvas>
+    </div>
+    <div class="demo-desc">
+      <strong>Feel:</strong> Tech tags float in a slow, deliberate drift — more controlled, badge-like. Behind them, tiny dot particles create a subtle field of depth. Tags never collide or connect. More polished and refined, less chaotic than Option 1.
+    </div>
+  </div>
+</div>
+
+<div class="select-bar" id="select-bar">Selected! Tell me what you think in the terminal.</div>
+
+<script>
+// ── Shared ──────────────────────────────────────────────────────────────────
+const TAGS = ['React', 'TypeScript', 'Redux', 'Electron', 'Flutter', 'Kotlin', 'Playwright', 'Node.js', 'GraphQL', 'Vite'];
+const COLORS = ['rgba(99,102,241,0.9)', 'rgba(165,180,252,0.8)', 'rgba(129,140,248,0.85)'];
+
+function resizeCanvas(canvas) {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width - 240;
+  canvas.height = rect.height;
+}
+
+// ── Option 1: Tags as network particles ─────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('canvas1');
+  const ctx = canvas.getContext('2d');
+  resizeCanvas(canvas);
+
+  const particles = TAGS.map((tag, i) => ({
+    tag,
+    x: 60 + Math.random() * (canvas.width - 100),
+    y: 30 + Math.random() * (canvas.height - 60),
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: (Math.random() - 0.5) * 0.5,
+    color: COLORS[i % COLORS.length],
+  }));
+
+  let mouse = { x: -999, y: -999 };
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(99,102,241,${0.15 * (1 - dist/100)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw tags
+    particles.forEach(p => {
+      // Mouse repulsion
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 80) {
+        p.vx += (dx / dist) * 0.3;
+        p.vy += (dy / dist) * 0.3;
+      }
+
+      // Speed limit
+      const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      if (speed > 1.2) { p.vx *= 0.95; p.vy *= 0.95; }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Bounce
+      if (p.x < 10) { p.vx = Math.abs(p.vx); }
+      if (p.x > canvas.width - 10) { p.vx = -Math.abs(p.vx); }
+      if (p.y < 10) { p.vy = Math.abs(p.vy); }
+      if (p.y > canvas.height - 10) { p.vy = -Math.abs(p.vy); }
+
+      // Draw badge
+      ctx.font = '600 10px -apple-system, sans-serif';
+      const w = ctx.measureText(p.tag).width + 16;
+      const h = 22;
+      const x = p.x - w/2;
+      const y = p.y - h/2;
+
+      ctx.fillStyle = 'rgba(99,102,241,0.08)';
+      roundRect(ctx, x, y, w, h, 5);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(99,102,241,0.25)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, x, y, w, h, 5);
+      ctx.stroke();
+
+      ctx.fillStyle = p.color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(p.tag, p.x, p.y);
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Option 2: Floating tags + dust particles ─────────────────────────────────
+(function() {
+  const canvas = document.getElementById('canvas2');
+  const ctx = canvas.getContext('2d');
+  resizeCanvas(canvas);
+
+  // Dust particles
+  const dust = Array.from({ length: 40 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: 0.5 + Math.random() * 1.5,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: -0.1 - Math.random() * 0.2,
+    alpha: 0.1 + Math.random() * 0.3,
+  }));
+
+  // Floating tags — gentle sine-wave drift paths
+  const floatingTags = TAGS.slice(0, 8).map((tag, i) => ({
+    tag,
+    baseX: 40 + (i % 4) * (canvas.width / 4 - 10),
+    baseY: 30 + Math.floor(i / 4) * (canvas.height / 2 - 10),
+    offsetX: Math.random() * Math.PI * 2,
+    offsetY: Math.random() * Math.PI * 2,
+    speed: 0.003 + Math.random() * 0.004,
+    amplitude: 12 + Math.random() * 16,
+    color: COLORS[i % COLORS.length],
+  }));
+
+  let t = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 1;
+
+    // Draw dust
+    dust.forEach(d => {
+      d.x += d.vx;
+      d.y += d.vy;
+      if (d.y < -4) { d.y = canvas.height + 4; d.x = Math.random() * canvas.width; }
+      if (d.x < 0) d.x = canvas.width;
+      if (d.x > canvas.width) d.x = 0;
+
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(99,102,241,${d.alpha})`;
+      ctx.fill();
+    });
+
+    // Draw tags with sine-wave float
+    floatingTags.forEach(p => {
+      const x = p.baseX + Math.sin(t * p.speed + p.offsetX) * p.amplitude;
+      const y = p.baseY + Math.sin(t * p.speed * 0.7 + p.offsetY) * (p.amplitude * 0.6);
+
+      ctx.font = '600 10px -apple-system, sans-serif';
+      const w = ctx.measureText(p.tag).width + 18;
+      const h = 24;
+      const bx = x - w/2;
+      const by = y - h/2;
+
+      // Soft glow
+      ctx.shadowColor = 'rgba(99,102,241,0.3)';
+      ctx.shadowBlur = 8;
+      ctx.fillStyle = 'rgba(15,15,20,0.85)';
+      roundRect(ctx, bx, by, w, h, 6);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.strokeStyle = 'rgba(99,102,241,0.2)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, bx, by, w, h, 6);
+      ctx.stroke();
+
+      ctx.fillStyle = p.color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(p.tag, x, y);
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Utility ──────────────────────────────────────────────────────────────────
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function selectCard(id) {
+  document.querySelectorAll('.demo-wrap').forEach(c => c.classList.remove('selected'));
+  document.getElementById('card-' + id).classList.add('selected');
+  document.getElementById('select-bar').classList.add('visible');
+
+  // log event
+  fetch('/__event', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ type: 'click', choice: id === '1' ? 'tags-as-particles' : 'tags-float-dust', text: id === '1' ? 'Option 1 — Tags as particles' : 'Option 2 — Tags float, particles behind', timestamp: Date.now() })
+  }).catch(() => {});
+}
+</script>
+</body>
+</html>

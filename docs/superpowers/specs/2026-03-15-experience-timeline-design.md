@@ -82,7 +82,7 @@ The timeline uses a **flexbox row** per entry — a fixed-width left column for 
 
 - Entries container: **`position: 'relative'`** — required so the absolute-positioned vertical line is contained within it and does not escape to a parent ancestor.
 - Entries container must NOT have `overflow: 'hidden'` — the line would be clipped.
-- Vertical line: `position: 'absolute'`, `left: '11px'`, `top: 0`, `bottom: 0`, `width: '2px'`, `background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)'`, `transformOrigin: 'top'`, `zIndex: 0`
+- Vertical line: `position: 'absolute'`, `left: '11px'`, `top: 0`, `bottom: 0`, `width: '2px'`, `background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)'`, `zIndex: 0`. Set `transformOrigin: 'top'` in the element's `style` prop (not inside the Framer Motion variant) to avoid CSS specificity conflicts with Framer Motion's own style injection.
 - Dot column: `width: '24px'`, `flexShrink: 0`, `display: 'flex'`, `flexDirection: 'column'`, `alignItems: 'center'`, `paddingTop: { xs: '24px', md: '30px' }` (aligns dot with card header row)
 - Dot box: `width: '14px'`, `height: '14px'`, `borderRadius: '50%'`, `backgroundColor: 'colors.accent'`, `zIndex: 2`, `position: 'relative'` (required for `::after` ring — `position: relative` is the correct value here, not `absolute`, since the dot is a normal flow child of the dot column and must stay in flow while still serving as the `::after` positioning context)
 - Card: `flex: 1`
