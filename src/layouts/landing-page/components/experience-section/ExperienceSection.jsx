@@ -6,6 +6,7 @@ import SectionHeading from '../../../components/section-heading/SectionHeading.j
 import ExperienceCard from './ExperienceCard.jsx';
 import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react';
 import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react';
+import KreditBeeLogo from '../../../../assets/webp/kreditbee.webp';
 
 // ── Animation variants ──────────────────────────────────────────────────────
 
@@ -87,24 +88,11 @@ export default function ExperienceSection() {
                 expandLabel="4 bullets"
                 tags={['React', 'TypeScript', 'Redux', 'UPI / Fintech', 'System Design']}
                 companyLogo={
-                  <Box
-                    sx={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '6px',
-                      backgroundColor: 'colors.accentMuted',
-                      border: '1px solid',
-                      borderColor: 'colors.accent',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Typography variant="heading_h6_bold" sx={{ color: 'colors.accent' }}>
-                      KB
-                    </Typography>
-                  </Box>
+                  <img
+                    src={KreditBeeLogo}
+                    alt="KreditBee"
+                    style={{ width: '44px', height: '44px', borderRadius: '6px', objectFit: 'cover' }}
+                  />
                 }
                 jobTitle="Technical Lead at KreditBee"
                 tenure="Jan 2026 – Present"
