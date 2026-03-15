@@ -8,6 +8,8 @@ import LinkedIn from '../../../../assets/svg/social/linkedIn.svg?react';
 import Stackoverflow from '../../../../assets/svg/social/stackoverflow.svg?react';
 import SocialButton from '../../../components/social-button/SocialButton.jsx';
 import Download from '../../../../assets/svg/ic_download.svg?react';
+import Galaxy from '../../../../components/Galaxy/Galaxy.jsx';
+import DecryptedText from '../../../../components/DecryptedText/DecryptedText.jsx';
 
 const container = {
   hidden: {},
@@ -34,35 +36,38 @@ export default function HeroSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Gradient orb — top right */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '-15%',
-          right: '-8%',
-          width: { xs: '280px', md: '560px' },
-          height: { xs: '280px', md: '560px' },
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.14) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
+      {/* Galaxy background */}
+      <Galaxy
+        transparent={true}
+        hueShift={240}
+        density={1.2}
+        glowIntensity={0.25}
+        saturation={1.5}
+        speed={0.6}
+        rotationSpeed={0.02}
+        twinkleIntensity={0.4}
+        mouseInteraction={true}
+        mouseRepulsion={false}
+        style={{ position: 'absolute', inset: 0, zIndex: 0 }}
       />
-      {/* Gradient orb — bottom left */}
+
+      {/* Left-side text protection fade */}
       <Box
         sx={{
           position: 'absolute',
-          bottom: '5%',
-          left: '-5%',
-          width: { xs: '200px', md: '380px' },
-          height: { xs: '200px', md: '380px' },
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)',
+          top: 0, left: 0, bottom: 0,
+          width: { xs: '100%', md: '55%' },
+          background: {
+            xs: 'rgba(10,10,10,0.75)',
+            md: 'linear-gradient(to right, rgba(10,10,10,0.92) 50%, transparent 100%)',
+          },
+          zIndex: 1,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Content */}
-      <motion.div variants={container} initial="hidden" animate="visible">
+      {/* Content — zIndex 2 above Galaxy and fade */}
+      <motion.div variants={container} initial="hidden" animate="visible" style={{ position: 'relative', zIndex: 2 }}>
         <Box
           sx={{
             display: 'flex',
@@ -90,7 +95,7 @@ export default function HeroSection() {
 
           {/* Name */}
           <motion.div variants={item}>
-            <Typography
+            <Box
               sx={{
                 fontSize: { xs: 'clamp(52px, 14vw, 80px)', md: 'clamp(64px, 8vw, 96px)' },
                 fontWeight: 900,
@@ -99,10 +104,24 @@ export default function HeroSection() {
                 color: 'colors.textPrimary',
               }}
             >
-              Harishiv
+              <DecryptedText
+                text="Harishiv"
+                animateOn="view"
+                sequential={true}
+                revealDirection="start"
+                speed={45}
+                characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+              />
               <br />
-              Singh.
-            </Typography>
+              <DecryptedText
+                text="Singh."
+                animateOn="view"
+                sequential={true}
+                revealDirection="start"
+                speed={45}
+                characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+              />
+            </Box>
           </motion.div>
 
           {/* Tagline */}
