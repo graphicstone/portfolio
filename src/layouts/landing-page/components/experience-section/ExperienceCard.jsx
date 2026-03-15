@@ -1,80 +1,89 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { colorPalette } from '../../../ColorPalette.js';
+import { motion } from 'framer-motion';
 
 export default function ExperienceCard({
   companyLogo,
   jobTitle,
   tenure,
   description,
-  backgroundColor = colorPalette.black,
-  children
+  children,
 }) {
   return (
-    <Box
-      id="experience-card"
-      sx={{
-        width: '100%',
-        padding: '24px 30px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '30px',
-        border: `1px solid ${colorPalette.zinc800}`,
-        backgroundColor: backgroundColor,
-        borderRadius: '10px'
-      }}
+    <motion.div
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <Box
         sx={{
+          width: '100%',
+          padding: '28px 32px',
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          gap: '20px',
-          justifyContent: 'space-between',
-          alignItems: { xs: 'flex-start', md: 'center' }
+          flexDirection: 'column',
+          gap: '24px',
+          backgroundColor: 'colors.surface',
+          borderRadius: '12px',
+          borderLeft: '3px solid',
+          borderLeftColor: 'colors.accent',
+          outline: '1px solid',
+          outlineColor: 'colors.border',
+          transition: 'outline-color 0.3s ease, box-shadow 0.3s ease',
+          '&:hover': {
+            outlineColor: 'rgba(99,102,241,0.35)',
+            boxShadow: '0 0 32px rgba(99,102,241,0.10)',
+          },
         }}
       >
+        {/* Header row */}
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'row',
-            gap: '30px',
-            alignItems: 'center'
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: '16px',
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', md: 'center' },
           }}
         >
-          <Box
-            id="company-logo"
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center' }}>
+            <Box sx={{ '& svg': { width: '44px', height: 'auto', borderRadius: '6px' } }}>
+              {companyLogo}
+            </Box>
+            <Typography variant="heading_h4_semi_bold" sx={{ color: 'colors.textPrimary' }}>
+              {jobTitle}
+            </Typography>
+          </Box>
+          <Typography
+            variant="heading_h6_medium"
             sx={{
-              borderRadius: '8px',
-              '& svg': {
-                width: '50px',
-                height: 'auto',
-                borderRadius: '8px'
-              }
+              color: 'colors.accent',
+              whiteSpace: 'nowrap',
+              fontSize: '13px',
+              letterSpacing: '0.03em',
             }}
           >
-            {companyLogo}
-          </Box>
-          <Typography variant="heading_h4_semi_bold" sx={{ color: 'colors.white' }}>
-            {jobTitle}
+            {tenure}
           </Typography>
         </Box>
-        <Typography variant="heading_h6_semibold" sx={{ color: 'colors.white' }}>
-          {tenure}
-        </Typography>
+
+        {/* Body */}
+        <Box sx={{ color: 'colors.textSecondary' }}>
+          {children ? (
+            children
+          ) : (
+            <ul style={{ margin: 0, paddingLeft: '20px' }}>
+              {description.map((item, index) => (
+                <li key={index} style={{ marginBottom: '6px' }}>
+                  <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
+                    {item}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Box>
       </Box>
-      <Box sx={{ color: 'colors.white' }}>
-        {children ? (
-          children
-        ) : (
-          <ul>
-            {description.map((item, index) => (
-              <li key={index}>
-                <Typography variant="paragraph_p2_regular">{item}</Typography>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Box>
-    </Box>
+    </motion.div>
   );
 }
