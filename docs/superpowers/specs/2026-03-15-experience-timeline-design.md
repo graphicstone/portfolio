@@ -80,7 +80,8 @@ The timeline uses a **flexbox row** per entry — a fixed-width left column for 
 
 ### Measurements
 
-- Entries container: `position: 'relative'`
+- Entries container: **`position: 'relative'`** — required so the absolute-positioned vertical line is contained within it and does not escape to a parent ancestor.
+- Entries container must NOT have `overflow: 'hidden'` — the line would be clipped.
 - Vertical line: `position: 'absolute'`, `left: '11px'`, `top: 0`, `bottom: 0`, `width: '2px'`, `background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)'`, `transformOrigin: 'top'`, `zIndex: 0`
 - Dot column: `width: '24px'`, `flexShrink: 0`, `display: 'flex'`, `flexDirection: 'column'`, `alignItems: 'center'`, `paddingTop: { xs: '24px', md: '30px' }` (aligns dot with card header row)
 - Dot box: `width: '14px'`, `height: '14px'`, `borderRadius: '50%'`, `backgroundColor: 'colors.accent'`, `zIndex: 2`, `position: 'relative'` (required for `::after` ring — `position: relative` is the correct value here, not `absolute`, since the dot is a normal flow child of the dot column and must stay in flow while still serving as the `::after` positioning context)
@@ -113,25 +114,29 @@ const inView = useInView(ref, { once: true, amount: 0.1 });
 
 ### Variants + timing
 
+Both `hidden` and `visible` keys are fully defined in every variant — no inference required:
+
 ```js
-// Line
+// Line — hidden has scaleY:0 only (opacity stays 1 throughout)
 const lineVariants = {
-  hidden: { scaleY: 0 },
+  hidden:  { scaleY: 0 },
   visible: { scaleY: 1, transition: { duration: 1.8, delay: 0, ease: [0.16, 1, 0.3, 1] } }
 };
 
-// Dot (i = 0, 1, 2)
+// Dot (i = 0, 1, 2) — hidden collapses and fades; visible restores both
 const dotVariants = (i) => ({
-  hidden: { scale: 0, opacity: 0 },
+  hidden:  { scale: 0, opacity: 0 },
   visible: { scale: 1, opacity: 1, transition: { duration: 0.4, delay: 0.3 + i * 0.3, ease: [0.22, 1, 0.36, 1] } }
 });
 
-// Card (i = 0, 1, 2)
+// Card (i = 0, 1, 2) — hidden is offset right and invisible
 const cardVariants = (i) => ({
-  hidden: { x: 28, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.65, delay: 0.45 + i * 0.3, ease: [0.22, 1, 0.36, 1] } }
+  hidden:  { x: 28, opacity: 0 },
+  visible: { x: 0,  opacity: 1, transition: { duration: 0.65, delay: 0.45 + i * 0.3, ease: [0.22, 1, 0.36, 1] } }
 });
 ```
+
+Delay formula `0.3 + i * 0.3` and `0.45 + i * 0.3` is defined for `i = 0, 1, 2` (3 entries). If entries change, update `i` accordingly.
 
 ---
 
@@ -141,10 +146,11 @@ Applied via MUI `sx` `'&::after'` on the KreditBee dot `Box`. This works because
 
 ```js
 // On KreditBee dot Box sx prop:
+// Note: 'inset' is not a MUI sx shorthand — use explicit top/right/bottom/left
 '&::after': {
   content: '""',
   position: 'absolute',
-  inset: '-5px',
+  top: '-5px', right: '-5px', bottom: '-5px', left: '-5px',
   borderRadius: '50%',
   border: '2px solid #6366F1',
   animation: 'pulse-ring 2s ease-out infinite',
@@ -176,7 +182,7 @@ Remove the `motion.div` wrapper from `ExperienceCard`. The component's root elem
 | `src/index.css` | Add `@keyframes pulse-ring` |
 | `src/layouts/landing-page/components/experience-section/ExperienceSection.jsx` | Full rewrite — `useInView`, flexbox timeline layout, 3 entries, KreditBee content, updated Walrus tenure |
 | `src/layouts/landing-page/components/experience-section/ExperienceCard.jsx` | Remove `motion.div` wrapper; root becomes inner `Box` |
-| `src/layouts/landing-page/components/experience-section/ExperienceSectionStyles.js` | Cleared to empty export. The import `{ experienceSectionStyles }` in `ExperienceSection.jsx` is also removed since styles are inlined. |
+| `src/layouts/landing-page/components/experience-section/ExperienceSectionStyles.js` | File is **deleted**. The import line `import { experienceSectionStyles } from './ExperienceSectionStyles.js'` in `ExperienceSection.jsx` is also removed. No other file imports this module. |
 
 ---
 
