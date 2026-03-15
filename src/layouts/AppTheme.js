@@ -30,13 +30,13 @@ const appThemeWithoutCustomStyles = createTheme({
   },
   palette: {
     background: {
-      default: colorPalette.white
+      default: colorPalette.background
     },
     text: {
-      primary: colorPalette.black
+      primary: colorPalette.textPrimary
     },
     primary: {
-      main: colorPalette.neutral
+      main: colorPalette.accent
     },
     colors: {
       ...colorPalette
@@ -95,53 +95,37 @@ const appThemeWithoutCustomStyles = createTheme({
 
 const appTheme = createTheme(appThemeWithoutCustomStyles, {
   typography: {
-    // displayText
+    // displayText — fluid sizing via clamp(), no breakpoint overrides needed
     displayText_regular: {
-      fontSize: '48px',
-      lineHeight: '56px',
-      letterSpacing: 0,
+      fontSize: 'clamp(36px, 5vw, 72px)',
+      lineHeight: 1.05,
+      letterSpacing: '-0.02em',
       fontFamily: FontsEnum.SORA,
-      fontWeight: 400,
-      [appThemeWithoutCustomStyles.breakpoints.down('md')]: {
-        fontSize: '28px',
-        lineHeight: '32px'
-      }
+      fontWeight: 400
     },
 
     displayText_medium: {
-      fontSize: '48px',
-      lineHeight: '56px',
-      letterSpacing: 0,
+      fontSize: 'clamp(36px, 5vw, 72px)',
+      lineHeight: 1.05,
+      letterSpacing: '-0.02em',
       fontFamily: FontsEnum.SORA,
-      fontWeight: 500,
-      [appThemeWithoutCustomStyles.breakpoints.down('md')]: {
-        fontSize: '28px',
-        lineHeight: '32px'
-      }
+      fontWeight: 500
     },
 
     displayText_bold: {
-      fontSize: '48px',
-      lineHeight: '56px',
-      letterSpacing: 0,
+      fontSize: 'clamp(36px, 5vw, 72px)',
+      lineHeight: 1.05,
+      letterSpacing: '-0.02em',
       fontFamily: FontsEnum.SORA,
-      fontWeight: 700,
-      [appThemeWithoutCustomStyles.breakpoints.down('md')]: {
-        fontSize: '28px',
-        lineHeight: '32px'
-      }
+      fontWeight: 700
     },
 
     displayText_extra_bold: {
-      fontSize: '48px',
-      lineHeight: '56px',
-      letterSpacing: 0,
+      fontSize: 'clamp(36px, 5vw, 72px)',
+      lineHeight: 1.05,
+      letterSpacing: '-0.02em',
       fontFamily: FontsEnum.SORA,
-      fontWeight: 900,
-      [appThemeWithoutCustomStyles.breakpoints.down('md')]: {
-        fontSize: '28px',
-        lineHeight: '32px'
-      }
+      fontWeight: 900
     },
 
     // paragraph_p2
