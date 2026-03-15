@@ -4,7 +4,7 @@ Personal portfolio website built with React and Vite. Showcases work experience,
 
 ## Live
 
-Deployed on Vercel.
+[harishiv.cv](https://harishiv.cv)
 
 ## Tech Stack
 
