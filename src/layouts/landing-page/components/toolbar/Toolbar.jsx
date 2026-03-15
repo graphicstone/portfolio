@@ -2,25 +2,29 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { toolbarStyles } from './ToolbarStyles.js';
+import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
 import Menu from '../../../../assets/svg/ic_menu.svg?react';
 import Download from '../../../../assets/svg/ic_download.svg?react';
-import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
+import { useScrolled } from '../../../hooks/useScrolled.js';
 
 export default function Toolbar() {
   const toolbarItems = ['About Me', 'Skills', 'Projects', 'Contact Me'];
   const [drawerState, setDrawerState] = React.useState(false);
+  const scrolled = useScrolled(20);
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
     setDrawerState(open);
+  };
+
+  const scrollTo = (label) => {
+    const id = label.toLowerCase().replace(' ', '-');
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const drawerList = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 260, backgroundColor: 'colors.surface', height: '100%', p: 2 }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -28,17 +32,10 @@ export default function Toolbar() {
       <List>
         {toolbarItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton>
-              <Box
-                id="drawer-items"
-                sx={{ cursor: 'pointer', width: '100%' }}
-                onClick={() => {
-                  const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <Typography variant="paragraph_p2_regular">{item}</Typography>
-              </Box>
+            <ListItemButton onClick={() => scrollTo(item)} sx={{ borderRadius: '8px' }}>
+              <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textPrimary' }}>
+                {item}
+              </Typography>
             </ListItemButton>
           </ListItem>
         ))}
@@ -47,61 +44,98 @@ export default function Toolbar() {
   );
 
   return (
-    <Box id="toolbar" sx={toolbarStyles.container}>
+    <Box
+      id="toolbar"
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1100,
+        height: '64px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: { xs: '0 16px', md: '0 80px' },
+        transition: 'background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease',
+        backgroundColor: scrolled ? 'rgba(10, 10, 10, 0.75)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(14px)' : 'none',
+        borderBottom: '1px solid',
+        borderBottomColor: scrolled ? 'rgba(30, 30, 30, 0.8)' : 'transparent',
+      }}
+    >
+      {/* Logo */}
       <Typography
-        variant="h6"
-        onClick={() => {
-          const element = document.getElementById('hero-section');
-          element?.scrollIntoView({ behavior: 'smooth' });
+        variant="heading_h5_bold"
+        onClick={() => document.getElementById('hero-section')?.scrollIntoView({ behavior: 'smooth' })}
+        sx={{
+          cursor: 'pointer',
+          color: 'colors.textPrimary',
+          letterSpacing: '-0.01em',
+          userSelect: 'none',
         }}
-        sx={{ cursor: 'pointer' }}
       >
-        Home
+        HS.
       </Typography>
-      <Box
-        id="toolbar-items"
-        sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '24px' }}
-      >
+
+      {/* Desktop nav links */}
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: '36px' }}>
         {toolbarItems.map((item) => (
-          <Box
-            id="toolbar-item"
+          <Typography
             key={item}
-            sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-            onClick={() => {
-              const element = document.getElementById(item.toLowerCase().replace(' ', '-'));
-              element?.scrollIntoView({ behavior: 'smooth' });
+            variant="heading_h6_medium"
+            onClick={() => scrollTo(item)}
+            sx={{
+              cursor: 'pointer',
+              color: 'colors.textSecondary',
+              transition: 'color 0.2s ease',
+              '&:hover': { color: 'colors.textPrimary' },
             }}
           >
-            <Typography key={item} variant="h6">
-              {item}
-            </Typography>
-          </Box>
+            {item}
+          </Typography>
         ))}
       </Box>
+
+      {/* Resume CTA */}
       <Button
-        id="toolbar-button"
-        variant="contained"
+        variant="outlined"
         endIcon={<Download />}
         sx={{
-          textTransform: 'none',
           display: { xs: 'none', md: 'flex' },
-          color: 'colors.white',
-          backgroundColor: 'colors.black'
+          textTransform: 'none',
+          color: 'colors.textPrimary',
+          borderColor: 'colors.border',
+          borderRadius: '8px',
+          padding: '8px 20px',
+          fontWeight: 600,
+          fontSize: '14px',
+          transition: 'all 0.2s ease',
+          '&:hover': {
+            borderColor: 'colors.accent',
+            color: 'colors.accent',
+            backgroundColor: 'colors.accentMuted',
+          },
         }}
-        onClick={() => {
-          window.open('/resume.pdf', '_blank');
-        }}
+        onClick={() => window.open('/resume.pdf', '_blank')}
       >
         Resume
       </Button>
+
+      {/* Mobile hamburger */}
       <Box
-        id="toolbar-menu"
-        sx={{ display: { xs: 'flex', md: 'none' } }}
+        sx={{ display: { xs: 'flex', md: 'none' }, cursor: 'pointer' }}
         onClick={toggleDrawer(true)}
       >
-        <Menu />
+        <Menu style={{ color: '#F5F5F5' }} />
       </Box>
-      <Drawer anchor="right" open={drawerState} onClose={toggleDrawer(false)}>
+
+      <Drawer
+        anchor="right"
+        open={drawerState}
+        onClose={toggleDrawer(false)}
+        PaperProps={{ sx: { backgroundColor: 'colors.surface' } }}
+      >
         {drawerList()}
       </Drawer>
     </Box>
