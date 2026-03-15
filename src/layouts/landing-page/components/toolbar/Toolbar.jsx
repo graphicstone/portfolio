@@ -3,8 +3,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { Drawer, List, ListItem, ListItemButton } from '@mui/material';
-import Menu from '../../../../assets/svg/ic_menu.svg?react';
-import Download from '../../../../assets/svg/ic_download.svg?react';
+import { FiMenu, FiDownload } from 'react-icons/fi';
 import { useScrolled } from '../../../hooks/useScrolled.js';
 
 export default function Toolbar() {
@@ -100,7 +99,7 @@ export default function Toolbar() {
       {/* Resume CTA */}
       <Button
         variant="outlined"
-        endIcon={<Download />}
+        endIcon={<FiDownload />}
         sx={{
           display: { xs: 'none', md: 'flex' },
           textTransform: 'none',
@@ -127,7 +126,7 @@ export default function Toolbar() {
         sx={{ display: { xs: 'flex', md: 'none' }, cursor: 'pointer' }}
         onClick={toggleDrawer(true)}
       >
-        <Menu style={{ color: '#F5F5F5' }} />
+        <FiMenu style={{ color: '#F5F5F5', width: '22px', height: '22px' }} />
       </Box>
 
       <Drawer

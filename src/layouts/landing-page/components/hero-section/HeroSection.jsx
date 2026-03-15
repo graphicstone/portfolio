@@ -2,12 +2,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
-import Medium from '../../../../assets/svg/social/medium.svg?react';
-import GitHub from '../../../../assets/svg/social/github.svg?react';
-import LinkedIn from '../../../../assets/svg/social/linkedIn.svg?react';
-import Stackoverflow from '../../../../assets/svg/social/stackoverflow.svg?react';
+import { FiDownload } from 'react-icons/fi';
+import { SiGithub, SiLinkedin, SiMedium, SiStackoverflow } from 'react-icons/si';
 import SocialButton from '../../../components/social-button/SocialButton.jsx';
-import Download from '../../../../assets/svg/ic_download.svg?react';
 import Galaxy from '../../../../components/Galaxy/Galaxy.jsx';
 import DecryptedText from '../../../../components/DecryptedText/DecryptedText.jsx';
 
@@ -152,7 +149,7 @@ export default function HeroSection() {
             >
               <Button
                 variant="contained"
-                endIcon={<Download />}
+                endIcon={<FiDownload />}
                 onClick={() => window.open('/resume.pdf', '_blank')}
                 sx={{
                   textTransform: 'none',
@@ -175,13 +172,10 @@ export default function HeroSection() {
               </Button>
 
               <Box sx={{ display: 'flex', gap: '12px' }}>
-                <SocialButton icon={<GitHub />} link="https://github.com/graphicstone/" />
-                <SocialButton icon={<LinkedIn />} link="https://www.linkedin.com/in/harishiv-singh" />
-                <SocialButton icon={<Medium />} link="https://medium.com/@graphicstone" />
-                <SocialButton
-                  icon={<Stackoverflow />}
-                  link="https://stackoverflow.com/users/7810174/graphicstone"
-                />
+                <SocialButton icon={<SiGithub />} link="https://github.com/graphicstone/" />
+                <SocialButton icon={<SiLinkedin />} link="https://www.linkedin.com/in/harishiv-singh" />
+                <SocialButton icon={<SiMedium />} link="https://medium.com/@graphicstone" />
+                <SocialButton icon={<SiStackoverflow />} link="https://stackoverflow.com/users/7810174/graphicstone" />
               </Box>
             </Box>
           </motion.div>
