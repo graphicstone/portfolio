@@ -1,49 +1,43 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { colorPalette } from '../../../ColorPalette.js';
 
 export default function SkillsBadge({ icon, name, brandColor }) {
   return (
     <Box
-      role="button"
+      role="img"
       aria-label={`Skill: ${name}`}
-      tabIndex={0}
       sx={{
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        minHeight: { xs: '88px', md: '120px' },
-        padding: { xs: '16px', md: '24px' },
-        border: `2px solid ${colorPalette.black}`,
-        borderRadius: '12px',
-        gap: { xs: '16px', md: '24px' },
-        cursor: 'pointer',
-        transition:
-          'transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease',
+        gap: '10px',
+        padding: '10px 20px',
+        border: '1px solid',
+        borderColor: 'colors.border',
+        borderRadius: '100px',
+        backgroundColor: 'colors.surface',
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+        transition: 'border-color 0.2s ease, background-color 0.2s ease',
         '& svg': {
-          height: { xs: '24px', md: '40px' },
+          height: '18px',
           width: 'auto',
-          color: colorPalette.black
+          color: brandColor || 'colors.textSecondary',
+          flexShrink: 0,
         },
         '&:hover': {
-          transform: 'translateY(-2px)',
-          backgroundColor: colorPalette.black,
-          color: colorPalette.white,
-          boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
-          '& svg': {
-            color: brandColor || colorPalette.white
-          }
+          borderColor: brandColor || 'colors.accent',
+          backgroundColor: 'colors.surfaceElevated',
         },
-        '&:focus-visible': {
-          outline: '3px solid #7aa2ff',
-          outlineOffset: '2px'
-        }
       }}
     >
       {icon}
-      <Typography variant="heading_h5_bold">{name}</Typography>
+      <Typography
+        variant="heading_h6_medium"
+        sx={{ color: 'colors.textPrimary', lineHeight: 1 }}
+      >
+        {name}
+      </Typography>
     </Box>
   );
 }
