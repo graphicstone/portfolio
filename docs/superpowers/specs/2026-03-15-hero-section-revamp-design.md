@@ -21,6 +21,7 @@ Elevate the hero section from a plain text layout to an atmospheric, animated ex
 | `src/components/BlurText/BlurText.jsx` | New — copied from React Bits |
 | `src/layouts/landing-page/components/hero-section/HeroSection.jsx` | Add Galaxy background + DecryptedText on name |
 | `src/layouts/components/section-heading/SectionHeading.jsx` | Replace heading Typography with BlurText |
+| `src/index.css` | Add BlurText font-weight utility classes |
 | `package.json` | Add `ogl` dependency (required by Galaxy) |
 
 No other files change.
@@ -58,6 +59,10 @@ Copied verbatim from `https://raw.githubusercontent.com/DavidHDev/react-bits/mai
 ```
 
 The Galaxy component's canvas is appended as a child of `.galaxy-container` via `useEffect`. It must fill 100% of its parent.
+
+### Style prop forwarding
+
+The Galaxy component's root element is `<div ref={ctnDom} className="galaxy-container" {...rest} />`. Because it spreads `...rest`, passing `style` as a prop is safe — it will be forwarded to the root div.
 
 ### Props used in HeroSection
 
@@ -127,8 +132,8 @@ The Galaxy component's canvas is appended as a child of `.galaxy-container` via 
       top: 0, left: 0, bottom: 0,
       width: { xs: '100%', md: '55%' },
       background: {
-        xs: 'rgba(13,13,13,0.75)',
-        md: 'linear-gradient(to right, rgba(13,13,13,0.92) 50%, transparent 100%)',
+        xs: 'rgba(10,10,10,0.75)',
+        md: 'linear-gradient(to right, rgba(10,10,10,0.92) 50%, transparent 100%)',
       },
       zIndex: 1,
       pointerEvents: 'none',
@@ -199,10 +204,10 @@ Replace the hero name `<Typography>` block with two `DecryptedText` instances:
 - `animateOn="view"` — triggers when the element enters the viewport (uses IntersectionObserver internally)
 - `sequential=true` — characters reveal one by one left to right, not all scrambling at once
 - `revealDirection="start"` — left to right reveal
-- `speed={45}` — 45ms per character step; "Harishiv" (8 chars) takes ~360ms, "Singh." (6 chars) ~270ms
-- Both lines are separate instances so they independently track viewport entry; "Singh." naturally starts just after "Harishiv" since it's lower in the DOM and the Framer Motion stagger (`item` variant, `staggerChildren: 0.1`) delays the second line anyway
+- `speed={45}` — 45ms per character step (JS `setInterval`); "Harishiv" (8 chars) takes ~360ms total
+- Both lines are separate instances so they independently track viewport entry
 
-The wrapping `<Box>` carries all the font styling (size, weight, letterSpacing) so `DecryptedText` inherits those styles via `currentColor` / `inherit`. No className-based font overrides needed.
+The wrapping `<Box>` carries all the font styling (size, weight, letterSpacing). `DecryptedText` renders `<motion.span>` elements that inherit font styles from the parent Box via CSS inheritance.
 
 ---
 
@@ -217,57 +222,92 @@ Copied verbatim from React Bits with one import change:
 + import { motion } from 'framer-motion';
 ```
 
-Note: BlurText renders a `<p>` tag. In `SectionHeading` we override this with `component` if needed, or accept the semantic `<p>` wrapper since it's inside a `<div>`.
+### BlurText `delay` prop unit
+
+The `delay` prop in BlurText is **milliseconds**. Internally the component converts it: `delay: (index * delay) / 1000` before passing to Framer Motion. So `delay={80}` = 80ms stagger between words. This is correct.
 
 ### Usage in SectionHeading
 
-The current `SectionHeading` renders:
+**Current `SectionHeading` structure:**
 ```jsx
-<Typography variant="displayText_extra_bold" sx={{ color: 'colors.textPrimary' }}>
-  <span style={{ fontWeight: 400 }}>{title}</span>
-  {accent ? ` ${accent}` : ''}
-</Typography>
+// returns a motion.div as root
+<motion.div initial={{ opacity: 0, y: 24 }} whileInView={...} ...>
+  <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    {label && <Typography ...>{label}</Typography>}
+    <Typography variant="displayText_extra_bold" sx={{ color: 'colors.textPrimary' }}>
+      <span style={{ fontWeight: 400 }}>{title}</span>
+      {accent ? ` ${accent}` : ''}
+    </Typography>
+  </Box>
+</motion.div>
 ```
 
-Replace with two side-by-side `BlurText` instances wrapped in a flex `Box`, preserving the two-tone weight treatment:
+**New structure** — the `motion.div` root is replaced by a plain `<Box>` (BlurText has its own IntersectionObserver, so the Framer Motion scroll trigger is no longer needed). The `displayText_extra_bold` Typography wrapper is kept as the outer container to preserve all its theme styles (font size, family, line-height, letter-spacing), but with `component="div"` so it renders as a block element rather than a `<p>`:
 
 ```jsx
-<Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', columnGap: '0.28em' }}>
-  {/* Light-weight word(s): "My", "Open" etc */}
-  <BlurText
-    text={title}
-    animateBy="words"
-    direction="top"
-    stepDuration={0.38}
-    delay={80}
-    className="blur-text-title"
-  />
-  {/* Bold accent word: "Experience", "Projects" etc */}
-  {accent && (
-    <BlurText
-      text={accent}
-      animateBy="words"
-      direction="top"
-      stepDuration={0.38}
-      delay={80}
-    />
+// SectionHeading — new return
+<Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+  {label && (
+    <Typography
+      sx={{
+        fontSize: '12px',
+        fontWeight: 600,
+        letterSpacing: '0.15em',
+        textTransform: 'uppercase',
+        color: 'colors.accent',
+      }}
+    >
+      {label}
+    </Typography>
   )}
+  <Typography
+    variant="displayText_extra_bold"
+    component="div"
+    sx={{ color: 'colors.textPrimary' }}
+  >
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', columnGap: '0.28em' }}>
+      {/* Light-weight title word(s) */}
+      <BlurText
+        text={title}
+        animateBy="words"
+        direction="top"
+        stepDuration={0.38}
+        delay={80}
+        className="blur-text-title"
+      />
+      {/* Bold accent word — inherits bold from displayText_extra_bold Typography */}
+      {accent && (
+        <BlurText
+          text={accent}
+          animateBy="words"
+          direction="top"
+          stepDuration={0.38}
+          delay={80}
+          className="blur-text-accent"
+        />
+      )}
+    </Box>
+  </Typography>
 </Box>
 ```
 
-Font styling is applied via a global CSS class for `blur-text-title` (light weight) and directly on the parent for the accent (inherits bold from `displayText_extra_bold` theme variant). Since BlurText renders `<motion.span>` elements, the parent's font weight cascades down.
-
-**Exact CSS approach:** add two utility classes to `src/index.css`:
+**Font weight delivery:**
+- `displayText_extra_bold` Typography wrapper provides the shared typographic styles (font-size, font-family, line-height, letter-spacing) to both BlurText instances via CSS inheritance
+- `blur-text-title` class overrides font-weight to 400 (light)
+- `blur-text-accent` class overrides font-weight to 900 (extra bold)
+- Both classes are added to `src/index.css`:
 
 ```css
-/* BlurText typography overrides */
-.blur-text-title span {
+/* BlurText font-weight overrides for SectionHeading */
+.blur-text-title {
   font-weight: 400;
 }
-/* .blur-text-accent spans inherit bold from the displayText_extra_bold Typography wrapper */
+.blur-text-accent {
+  font-weight: 900;
+}
 ```
 
-The existing `motion.div` wrapper (`whileInView`, `initial={{ opacity: 0, y: 24 }}`) on `SectionHeading` is **removed** — BlurText has its own IntersectionObserver scroll trigger, and stacking two animation systems on the same element creates jank.
+BlurText applies `className` to each inner `<motion.span>` element (not to the `<p>` root), so the selectors target the spans directly without a descendant combinator.
 
 ---
 
