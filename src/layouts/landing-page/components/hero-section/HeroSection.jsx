@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -19,8 +20,33 @@ const item = {
 };
 
 export default function HeroSection() {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const forwardToGalaxy = (e) => {
+      const galaxy = hero.querySelector('.galaxy-container');
+      if (!galaxy || galaxy === e.target || galaxy.contains(e.target)) return;
+      galaxy.dispatchEvent(new MouseEvent(e.type, {
+        bubbles: false,
+        clientX: e.clientX,
+        clientY: e.clientY,
+      }));
+    };
+
+    hero.addEventListener('mousemove', forwardToGalaxy);
+    hero.addEventListener('mouseleave', forwardToGalaxy);
+    return () => {
+      hero.removeEventListener('mousemove', forwardToGalaxy);
+      hero.removeEventListener('mouseleave', forwardToGalaxy);
+    };
+  }, []);
+
   return (
     <Box
+      ref={heroRef}
       id="hero-section"
       sx={{
         width: '100%',
@@ -38,13 +64,14 @@ export default function HeroSection() {
         transparent={true}
         hueShift={240}
         density={1.2}
-        glowIntensity={0.25}
-        saturation={1.5}
+        glowIntensity={0.3}
+        saturation={1.2}
         speed={0.6}
         rotationSpeed={0.02}
         twinkleIntensity={0.4}
         mouseInteraction={true}
-        mouseRepulsion={false}
+        mouseRepulsion={true}
+        repulsionStrength={2}
         style={{ position: 'absolute', inset: 0, zIndex: 0 }}
       />
 
