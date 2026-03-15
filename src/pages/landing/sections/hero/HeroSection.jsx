@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -11,12 +11,12 @@ import DecryptedText from '../../../../components/DecryptedText/DecryptedText.js
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } }
 };
 
 const item = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } }
 };
 
 export default function HeroSection() {
@@ -32,7 +32,7 @@ export default function HeroSection() {
       galaxy.dispatchEvent(new MouseEvent(e.type, {
         bubbles: false,
         clientX: e.clientX,
-        clientY: e.clientY,
+        clientY: e.clientY
       }));
     };
 
@@ -56,7 +56,7 @@ export default function HeroSection() {
         flexDirection: 'column',
         justifyContent: 'center',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
     >
       {/* Galaxy background */}
@@ -83,10 +83,10 @@ export default function HeroSection() {
           width: { xs: '100%', md: '55%' },
           background: {
             xs: 'rgba(10,10,10,0.75)',
-            md: 'linear-gradient(to right, rgba(10,10,10,0.92) 50%, transparent 100%)',
+            md: 'linear-gradient(to right, rgba(10,10,10,0.92) 50%, transparent 100%)'
           },
           zIndex: 1,
-          pointerEvents: 'none',
+          pointerEvents: 'none'
         }}
       />
 
@@ -99,7 +99,7 @@ export default function HeroSection() {
             gap: { xs: '28px', md: '36px' },
             maxWidth: '860px',
             position: 'relative',
-            zIndex: 1,
+            zIndex: 1
           }}
         >
           {/* Overline */}
@@ -110,10 +110,10 @@ export default function HeroSection() {
                 fontWeight: 600,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: 'colors.accent',
+                color: 'colors.accent'
               }}
             >
-              Senior Frontend Engineer · 7 Years
+              Senior Software Engineer · 7 Years
             </Typography>
           </motion.div>
 
@@ -125,7 +125,7 @@ export default function HeroSection() {
                 fontWeight: 900,
                 lineHeight: 0.92,
                 letterSpacing: '-0.03em',
-                color: 'colors.textPrimary',
+                color: 'colors.textPrimary'
               }}
             >
               <DecryptedText
@@ -156,10 +156,10 @@ export default function HeroSection() {
                 color: 'colors.textSecondary',
                 maxWidth: '500px',
                 lineHeight: 1.75,
-                fontSize: '17px',
+                fontSize: '17px'
               }}
             >
-              I build scalable, performant products across web, desktop and mobile — React,
+              I build scalable, performant products across web, desktop and mobile using React,
               TypeScript, Electron and Flutter. Turning complex problems into polished experiences.
             </Typography>
           </motion.div>
@@ -171,7 +171,7 @@ export default function HeroSection() {
                 display: 'flex',
                 flexDirection: { xs: 'column', sm: 'row' },
                 alignItems: { xs: 'flex-start', sm: 'center' },
-                gap: '24px',
+                gap: '24px'
               }}
             >
               <Button
@@ -191,8 +191,8 @@ export default function HeroSection() {
                   '&:hover': {
                     backgroundColor: '#4F46E5',
                     transform: 'translateY(-2px)',
-                    boxShadow: '0 8px 28px rgba(99,102,241,0.35)',
-                  },
+                    boxShadow: '0 8px 28px rgba(99,102,241,0.35)'
+                  }
                 }}
               >
                 Download Resume

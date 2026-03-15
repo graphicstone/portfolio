@@ -6,17 +6,17 @@ import SectionHeading from '../../../../components/section-heading/SectionHeadin
 const stats = [
   { value: '7+', label: 'Years of\nExperience' },
   { value: '3', label: 'Platforms\nWeb · Mobile · Desktop' },
-  { value: '10+', label: 'Products\nShipped' },
+  { value: '10+', label: 'Products\nShipped' }
 ];
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.12 } }
 };
 
 const statVariant = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
 };
 
 export default function AboutMeSection() {
@@ -29,7 +29,7 @@ export default function AboutMeSection() {
         display: 'flex',
         flexDirection: 'column',
         gap: '56px',
-        scrollMarginTop: '64px',
+        scrollMarginTop: '64px'
       }}
     >
       <SectionHeading label="Background" title="About" accent="Me" />
@@ -39,7 +39,7 @@ export default function AboutMeSection() {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           gap: { xs: '48px', md: '80px' },
-          alignItems: 'flex-start',
+          alignItems: 'flex-start'
         }}
       >
         {/* Stats column */}
@@ -60,7 +60,7 @@ export default function AboutMeSection() {
                       fontWeight: 900,
                       lineHeight: 1,
                       letterSpacing: '-0.03em',
-                      color: 'colors.accent',
+                      color: 'colors.accent'
                     }}
                   >
                     {s.value}
@@ -89,7 +89,7 @@ export default function AboutMeSection() {
               variant="paragraph_p2_regular"
               sx={{ color: 'colors.textSecondary', lineHeight: 1.8, fontSize: '17px' }}
             >
-              Senior Frontend Engineer with 7+ years of experience building scalable web, mobile and
+              Senior Software Engineer with 7+ years of experience building scalable web, mobile and
               desktop products. I specialise in React/TypeScript and Electron on the web/desktop
               side, and Flutter/Android on mobile. I care deeply about performance, testability, and
               clean, maintainable architectures.
