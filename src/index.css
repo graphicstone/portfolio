@@ -51,3 +51,11 @@ body::after {
   70%  { transform: scale(2.5); opacity: 0;   }
   100% { transform: scale(2.5); opacity: 0;   }
 }
+
+/* BlurText font-weight overrides for SectionHeading */
+.blur-text-title {
+  font-weight: 400;
+}
+.blur-text-accent {
+  font-weight: 900;
+}

@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import BlurText from '../../../components/BlurText/BlurText.jsx';
 
 /**
  * Animated section heading used by every section.
@@ -11,31 +11,46 @@ import Box from '@mui/material/Box';
  */
 export default function SectionHeading({ label, title, accent }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        {label && (
-          <Typography
-            sx={{
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: 'colors.accent',
-            }}
-          >
-            {label}
-          </Typography>
-        )}
-        <Typography variant="displayText_extra_bold" sx={{ color: 'colors.textPrimary' }}>
-          <span style={{ fontWeight: 400 }}>{title}</span>
-          {accent ? ` ${accent}` : ''}
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      {label && (
+        <Typography
+          sx={{
+            fontSize: '12px',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: 'colors.accent',
+          }}
+        >
+          {label}
         </Typography>
-      </Box>
-    </motion.div>
+      )}
+      <Typography
+        variant="displayText_extra_bold"
+        component="div"
+        sx={{ color: 'colors.textPrimary' }}
+      >
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', columnGap: '0.28em' }}>
+          <BlurText
+            text={title}
+            animateBy="words"
+            direction="top"
+            stepDuration={0.38}
+            delay={80}
+            className="blur-text-title"
+          />
+          {accent && (
+            <BlurText
+              text={accent}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.38}
+              delay={80}
+              className="blur-text-accent"
+            />
+          )}
+        </Box>
+      </Typography>
+    </Box>
   );
 }
