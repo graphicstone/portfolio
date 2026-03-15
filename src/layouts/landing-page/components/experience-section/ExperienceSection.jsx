@@ -73,14 +73,14 @@ const dotColumnSx = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  paddingTop: { xs: '24px', md: '30px' },
+  paddingTop: { xs: '20px', md: '24px' },
 };
 
 const baseDotSx = {
-  width: '14px',
-  height: '14px',
+  width: '7px',
+  height: '7px',
   borderRadius: '50%',
-  backgroundColor: 'colors.accent',
+  backgroundColor: 'rgba(255,255,255,0.2)',
   zIndex: 2,
   position: 'relative',
 };
@@ -121,8 +121,8 @@ export default function ExperienceSection() {
             left: '11px',
             top: 0,
             bottom: 0,
-            width: '2px',
-            background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)',
+            width: '1px',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 60%, transparent 100%)',
             zIndex: 0,
           }}
         />
@@ -131,22 +131,7 @@ export default function ExperienceSection() {
         <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: { xs: '40px', md: '64px' } }}>
           <Box sx={dotColumnSx}>
             <motion.div variants={dotVariants(0)} initial="hidden" animate={animate}>
-              <Box
-                sx={{
-                  ...baseDotSx,
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    top: '-5px',
-                    right: '-5px',
-                    bottom: '-5px',
-                    left: '-5px',
-                    borderRadius: '50%',
-                    border: '2px solid #6366F1',
-                    animation: 'pulse-ring 2s ease-out infinite',
-                  },
-                }}
-              />
+              <Box sx={baseDotSx} />
             </motion.div>
           </Box>
           <Box sx={{ flex: 1 }}>
