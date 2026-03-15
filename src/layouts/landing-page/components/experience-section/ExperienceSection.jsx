@@ -152,6 +152,10 @@ export default function ExperienceSection() {
           <Box sx={{ flex: 1 }}>
             <motion.div variants={cardVariants(0)} initial="hidden" animate={animate}>
               <ExperienceCard
+                isActive={true}
+                defaultExpanded={true}
+                expandLabel="4 bullets"
+                tags={['React', 'TypeScript', 'Redux', 'UPI / Fintech', 'System Design']}
                 companyLogo={
                   <Box
                     sx={{
@@ -195,6 +199,10 @@ export default function ExperienceSection() {
           <Box sx={{ flex: 1 }}>
             <motion.div variants={cardVariants(1)} initial="hidden" animate={animate}>
               <ExperienceCard
+                isActive={false}
+                defaultExpanded={false}
+                expandLabel="4 projects"
+                tags={['React', 'Electron', 'Redux', 'Flutter', 'Kotlin', 'Playwright']}
                 companyLogo={<RenderNet />}
                 jobTitle="Senior Frontend Engineer at Walrus Tech Inc. (YC S21)"
                 tenure="Jun 2021 – Dec 2025"
@@ -273,6 +281,10 @@ export default function ExperienceSection() {
           <Box sx={{ flex: 1 }}>
             <motion.div variants={cardVariants(2)} initial="hidden" animate={animate}>
               <ExperienceCard
+                isActive={false}
+                defaultExpanded={false}
+                expandLabel="2 bullets"
+                tags={['Android', 'Kotlin', 'MVVM']}
                 companyLogo={<GlobalLogic />}
                 jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
                 tenure="Jul 2019 – May 2021"
