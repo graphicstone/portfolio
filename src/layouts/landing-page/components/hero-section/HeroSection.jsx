@@ -109,7 +109,7 @@ export default function HeroSection() {
                 animateOn="view"
                 sequential={true}
                 revealDirection="start"
-                speed={45}
+                speed={100}
                 characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
               />
               <br />
@@ -118,7 +118,7 @@ export default function HeroSection() {
                 animateOn="view"
                 sequential={true}
                 revealDirection="start"
-                speed={45}
+                speed={100}
                 characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
               />
             </Box>
