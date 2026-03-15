@@ -7,7 +7,7 @@ export const socialButtonStyles = {
     padding: '12px',
     display: 'flex',
     alignItems: 'center',
-    border: '2px solid #000000',
+    border: '1px solid #2a2a2a',
     borderRadius: '8px',
     cursor: 'pointer',
     '& svg': {
