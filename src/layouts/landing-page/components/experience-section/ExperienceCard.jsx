@@ -48,12 +48,11 @@ export default function ExperienceCard({
         borderLeft: '3px solid',
         borderLeftColor: 'colors.accent',
         outline: '1px solid',
-        outlineColor: isActive
-          ? 'rgba(99,102,241,0.45)'
-          : isOpen
-            ? 'rgba(99,102,241,0.2)'
-            : 'colors.border',
+        outlineColor: isOpen ? 'rgba(99,102,241,0.2)' : 'colors.border',
         transition: 'outline-color 0.3s ease, box-shadow 0.3s ease',
+        '&:hover': {
+          outlineColor: 'rgba(99,102,241,0.45)',
+        },
       }}
     >
       {/* Glowing top edge — active role only */}

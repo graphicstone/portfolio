@@ -176,7 +176,7 @@ export default function ExperienceSection() {
                     </Typography>
                   </Box>
                 }
-                jobTitle="Lead Frontend Engineer (UPI) at KreditBee"
+                jobTitle="Technical Lead at KreditBee"
                 tenure="Jan 2026 – Present"
                 description={[
                   'Architecting and owning the frontend systems for a high-scale fintech UPI payment platform.',
