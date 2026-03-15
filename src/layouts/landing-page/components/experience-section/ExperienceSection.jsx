@@ -4,7 +4,7 @@ import { experienceSectionStyles } from './ExperienceSectionStyles.js';
 import ExperienceCard from './ExperienceCard.jsx';
 import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react';
 import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react';
-import { colorPalette } from '../../../ColorPalette.js';
+import SectionHeading from '../../../components/section-heading/SectionHeading.jsx';
 
 export default function ExperienceSection() {
   const workExperience = {
@@ -48,78 +48,76 @@ export default function ExperienceSection() {
 
   return (
     <Box id="experience" sx={experienceSectionStyles.experienceSection}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-        <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>
-          <span style={{ fontWeight: 400 }}>My</span> Experience
-        </Typography>
-      </Box>
+      <SectionHeading label="Career" title="My" accent="Experience" />
+
       <Box
         id="experience-cards"
         sx={{
           width: '100%',
-          padding: { xs: 0, md: '40px 24px' },
           display: 'flex',
           flexDirection: 'column',
-          gap: { xs: '20px', md: '32px' }
+          gap: { xs: '20px', md: '24px' },
         }}
       >
-        {/* Walrus tech inc. parent card with nested projects */}
         <ExperienceCard
           companyLogo={<RenderNet />}
           jobTitle="Senior Frontend Engineer at Walrus Tech Inc. (YC S21)"
           tenure="Jun 2021 - Present"
           description={[]}
-          backgroundColor={colorPalette.zinc800}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {/* Affogato AI / RenderNet */}
             <Box>
-              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.textPrimary' }}>
                 Affogato AI (formerly RenderNet AI)
               </Typography>
-              <ul>
+              <ul style={{ margin: '8px 0 0', paddingLeft: '20px' }}>
                 {workExperience.rendernet.map((item, index) => (
-                  <li key={`rendernet-${index}`}>
-                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  <li key={`rendernet-${index}`} style={{ marginBottom: '4px' }}>
+                    <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
+                      {item}
+                    </Typography>
                   </li>
                 ))}
               </ul>
             </Box>
-            {/* RoverX */}
             <Box>
-              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.textPrimary' }}>
                 RoverX
               </Typography>
-              <ul>
+              <ul style={{ margin: '8px 0 0', paddingLeft: '20px' }}>
                 {workExperience.roverX.map((item, index) => (
-                  <li key={`roverx-${index}`}>
-                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  <li key={`roverx-${index}`} style={{ marginBottom: '4px' }}>
+                    <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
+                      {item}
+                    </Typography>
                   </li>
                 ))}
               </ul>
             </Box>
-            {/* Defy */}
             <Box>
-              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.textPrimary' }}>
                 Defy
               </Typography>
-              <ul>
+              <ul style={{ margin: '8px 0 0', paddingLeft: '20px' }}>
                 {workExperience.defy.map((item, index) => (
-                  <li key={`defy-${index}`}>
-                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  <li key={`defy-${index}`} style={{ marginBottom: '4px' }}>
+                    <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
+                      {item}
+                    </Typography>
                   </li>
                 ))}
               </ul>
             </Box>
-            {/* Walrus */}
             <Box>
-              <Typography variant="heading_h5_bold" sx={{ color: 'colors.white' }}>
+              <Typography variant="heading_h5_bold" sx={{ color: 'colors.textPrimary' }}>
                 Walrus
               </Typography>
-              <ul>
+              <ul style={{ margin: '8px 0 0', paddingLeft: '20px' }}>
                 {workExperience.walrus.map((item, index) => (
-                  <li key={`walrus-${index}`}>
-                    <Typography variant="paragraph_p2_regular">{item}</Typography>
+                  <li key={`walrus-${index}`} style={{ marginBottom: '4px' }}>
+                    <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
+                      {item}
+                    </Typography>
                   </li>
                 ))}
               </ul>
@@ -127,7 +125,6 @@ export default function ExperienceSection() {
           </Box>
         </ExperienceCard>
 
-        {/* GlobalLogic */}
         <ExperienceCard
           companyLogo={<GlobalLogic />}
           jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
