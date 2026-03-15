@@ -1,45 +1,111 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ExternalLink from '../../../../assets/svg/ic_external_link.svg?react';
+import { motion } from 'framer-motion';
 
-export default function ProjectsCard({ image, index, name, description, link, reverse = false }) {
+export default function ProjectsCard({ index, name, description, link }) {
   return (
-    <Box
-      id="projects-card"
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: { xs: 'column', md: reverse ? 'row-reverse' : 'row' },
-        gap: { xs: '28px', md: '40px' },
-        padding: { xs: '8px 0', md: '20px 0' }
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <Box
-        id="projects-card-details"
+        onClick={() => window.open(link, '_blank')}
         sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: { xs: '16px', md: '28px' }
+          position: 'relative',
+          overflow: 'hidden',
+          borderRadius: '12px',
+          border: '1px solid',
+          borderColor: 'colors.border',
+          backgroundColor: 'colors.surface',
+          minHeight: { xs: '180px', md: '220px' },
+          cursor: 'pointer',
+          transition: 'border-color 0.3s ease',
+          '&:hover': { borderColor: 'colors.accent' },
+          '&:hover .card-overlay': { opacity: 1, transform: 'translateY(0)' },
+          '&:hover .card-index': { opacity: 0.02 },
         }}
       >
-        <Typography variant="displayText_extra_bold" sx={{ color: 'colors.white' }}>
+        {/* Faint background index number */}
+        <Typography
+          className="card-index"
+          sx={{
+            position: 'absolute',
+            top: '16px',
+            left: '20px',
+            fontSize: '96px',
+            fontWeight: 900,
+            color: 'colors.textPrimary',
+            lineHeight: 1,
+            opacity: 0.05,
+            transition: 'opacity 0.3s ease',
+            userSelect: 'none',
+            zIndex: 0,
+          }}
+        >
           {index}
         </Typography>
-        <Typography variant="heading_h2_bold" sx={{ color: 'colors.white' }}>
-          {name}
-        </Typography>
-        <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.zinc500' }}>
-          {description}
-        </Typography>
+
+        {/* Default state — project name at bottom */}
         <Box
-          id="projects-card-link"
-          sx={{ cursor: 'pointer' }}
-          onClick={() => window.open(link, '_blank')}
+          sx={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '24px',
+            right: '24px',
+            zIndex: 1,
+          }}
         >
-          <ExternalLink />
+          <Typography
+            variant="heading_h3_bold"
+            sx={{ color: 'colors.textPrimary', lineHeight: 1.2 }}
+          >
+            {name}
+          </Typography>
+        </Box>
+
+        {/* Hover overlay */}
+        <Box
+          className="card-overlay"
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 2,
+            backgroundColor: 'colors.accent',
+            opacity: 0,
+            transform: 'translateY(8px)',
+            transition: 'opacity 0.3s ease, transform 0.3s ease',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            padding: '28px',
+            gap: '12px',
+          }}
+        >
+          <Typography variant="heading_h4_bold" sx={{ color: '#fff' }}>
+            {name}
+          </Typography>
+          <Typography
+            variant="paragraph_p2_regular"
+            sx={{ color: 'rgba(255,255,255,0.85)', lineHeight: 1.65 }}
+          >
+            {description}
+          </Typography>
+          <Typography
+            sx={{
+              color: '#fff',
+              fontSize: '13px',
+              fontWeight: 700,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              mt: '4px',
+            }}
+          >
+            View on GitHub →
+          </Typography>
         </Box>
       </Box>
-    </Box>
+    </motion.div>
   );
 }
