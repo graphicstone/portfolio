@@ -23,7 +23,7 @@ export default function ProjectsCard({ index, name, description, link }) {
           cursor: 'pointer',
           transition: 'border-color 0.3s ease',
           '&:hover': { borderColor: 'colors.accent' },
-          '&:hover .card-overlay': { opacity: 1, transform: 'translateY(0)' },
+          '&:hover .card-overlay': { opacity: 1 },
           '&:hover .card-index': { opacity: 0.02 },
         }}
       >
@@ -74,8 +74,7 @@ export default function ProjectsCard({ index, name, description, link }) {
             zIndex: 2,
             backgroundColor: 'colors.accent',
             opacity: 0,
-            transform: 'translateY(8px)',
-            transition: 'opacity 0.3s ease, transform 0.3s ease',
+            transition: 'opacity 0.3s ease',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
