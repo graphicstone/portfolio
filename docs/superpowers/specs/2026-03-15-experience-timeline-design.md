@@ -23,11 +23,19 @@ Three timeline entries, ordered newest → oldest:
 
 ### Entry 1 — KreditBee (new)
 
-Logo: No SVG exists. Render an initials badge:
-- `Box` `32×32px`, `borderRadius: '6px'`, `backgroundColor: 'colors.accentMuted'`, `border: '1px solid'`, `borderColor: 'colors.accent'`, display flex, center-aligned.
-- Inner `Typography` `heading_h6_bold`, `color: 'colors.accent'`, text `"KB"`.
+Logo: No SVG asset exists. Render an initials badge:
+```jsx
+<Box sx={{
+  width: '36px', height: '36px', borderRadius: '6px',
+  backgroundColor: 'colors.accentMuted', border: '1px solid',
+  borderColor: 'colors.accent', display: 'flex',
+  alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+}}>
+  <Typography variant="heading_h6_bold" sx={{ color: 'colors.accent' }}>KB</Typography>
+</Box>
+```
 
-Bullet points (exact copy):
+Bullet points (exact):
 ```
 - Architecting and owning the frontend systems for a high-scale fintech UPI payment platform.
 - Driving technical decisions, code standards, and delivery across the frontend org.
@@ -37,118 +45,113 @@ Bullet points (exact copy):
 
 ### Entry 2 — Walrus Tech Inc.
 
-Logo: import `RenderNet` from `../../../../assets/svg/experience/rendernet.svg?react` (unchanged — same import as current code).
-
-Tenure update: `"Jun 2021 - Present"` → `"Jun 2021 - Dec 2025"`.
-
-Body: Keep the **entire existing JSX children block** exactly as-is — the four sub-role sections (Affogato AI, RoverX, Defy, Walrus) with all their bullet arrays. No content changes.
+Logo: `import RenderNet from '../../../../assets/svg/experience/rendernet.svg?react'` (unchanged).
+Tenure: update `"Jun 2021 - Present"` → `"Jun 2021 - Dec 2025"`.
+Body: keep the **entire existing JSX children block** (4 sub-roles: Affogato AI, RoverX, Defy, Walrus) exactly as-is.
 
 ### Entry 3 — GlobalLogic
 
-Logo: import `GlobalLogic` from `../../../../assets/svg/experience/globallogic.svg?react` (unchanged).
+Logo: `import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react'` (unchanged).
 Tenure and bullets: unchanged.
 
 ---
 
 ## Layout
 
-### Positioning context
+The timeline uses a **flexbox row** per entry — a fixed-width left column for the dot, and the card filling the rest. The vertical line is absolutely positioned on the entries container spanning its full height.
 
-The **entry row wrapper** (`Box` containing one dot + one card) is `position: 'relative'`. The dot and connector tick are positioned absolutely relative to this entry row wrapper — not relative to the card or the section.
+### Entry row structure
 
-The **entries container** (the `Box` holding all three entry row wrappers and the vertical line) is also `position: 'relative'` — this is the positioning context for the vertical line only.
+```
+[entries-container: position relative]
+  │
+  ├── [vertical-line: position absolute, left: 11px, top:0, bottom:0, width:2px]
+  │
+  ├── [entry-row: display flex, flexDirection row, gap 24px, mb 64px]
+  │     ├── [dot-column: width 24px, flexShrink 0, display flex, flexDirection column, alignItems center, pt '30px']
+  │     │     └── [dot: 14×14px circle]
+  │     └── [card: flex 1]
+  │
+  ├── [entry-row] ...
+  └── [entry-row] ...
+```
+
+**Why flexbox instead of absolute positioning:** The dot-column is a fixed `24px` wide flex child. The vertical line is at `left: 11px` on the entries container (the center of 24px = 12px, minus 1px for the 2px line center = 11px). The dot is centred inside its `24px` column via `alignItems: center` — no offset math needed, alignment is guaranteed.
 
 ### Measurements
 
-- Section left padding: `{ xs: '36px', md: '48px' }` — this clears space for the line and dot.
-- **Vertical line:** child of the entries container.
-  - `position: 'absolute'`, `left: '7px'`, `top: 0`, `bottom: 0`, `width: '2px'`
-  - `background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)'`
-  - `transformOrigin: 'top'` (for `scaleY` animation)
-  - `zIndex: 0`
-  - Fills full height automatically via `top: 0` / `bottom: 0` on the `position: relative` entries container. No explicit `height` needed.
-- **Dot:** child of each entry row wrapper.
-  - `position: 'absolute'`, `left: { xs: '-29px', md: '-41px' }` (section padding − 7px half-dot), `top: { xs: '22px', md: '30px' }`
-  - `width: '14px'`, `height: '14px'`, `borderRadius: '50%'`, `backgroundColor: 'colors.accent'`
-  - `position: 'relative'` is also required on this `Box` so `::after` ring is positioned inside it.
-  - `zIndex: 2`
-- **Connector tick:** child of each entry row wrapper.
-  - `position: 'absolute'`, `left: { xs: '-15px', md: '-27px' }`, `top: { xs: '28px', md: '36px' }`
-  - `width: '14px'`, `height: '2px'`, `backgroundColor: 'colors.accent'`
-  - `zIndex: 1`
-- **Card:** unchanged visually. No position changes needed.
-- **Entry row gap:** `{ xs: '40px', md: '64px' }` via `flexDirection: 'column'` + `gap` on the entries container.
-
-### z-index layering (entries container stacking context)
-- Line: `zIndex: 0`
-- Connector tick: `zIndex: 1`
-- Dot: `zIndex: 2`
-- Card: default (above all timeline chrome)
+- Entries container: `position: 'relative'`
+- Vertical line: `position: 'absolute'`, `left: '11px'`, `top: 0`, `bottom: 0`, `width: '2px'`, `background: 'linear-gradient(to bottom, #6366F1 0%, rgba(99,102,241,0.3) 60%, transparent 100%)'`, `transformOrigin: 'top'`, `zIndex: 0`
+- Dot column: `width: '24px'`, `flexShrink: 0`, `display: 'flex'`, `flexDirection: 'column'`, `alignItems: 'center'`, `paddingTop: { xs: '24px', md: '30px' }` (aligns dot with card header row)
+- Dot box: `width: '14px'`, `height: '14px'`, `borderRadius: '50%'`, `backgroundColor: 'colors.accent'`, `zIndex: 2`, `position: 'relative'` (required for `::after` ring — `position: relative` is the correct value here, not `absolute`, since the dot is a normal flow child of the dot column and must stay in flow while still serving as the `::after` positioning context)
+- Card: `flex: 1`
+- Entry row gap: `{ xs: '40px', md: '64px' }` as `marginBottom` on each non-last entry row
 
 ---
 
 ## Animation
 
-### Orchestration
-
-Use Framer Motion's `useInView` hook on the **entries container** ref. When `inView` becomes `true`, all child `motion.div` elements switch from `'hidden'` to `'visible'` variant. Each element defines its own `variants` + `transition` (including `delay`).
+### Hook — import from `framer-motion`
 
 ```js
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+// NOT from 'react-intersection-observer'
+```
 
+```js
 const ref = useRef(null);
 const inView = useInView(ref, { once: true, amount: 0.1 });
 // ref goes on the entries container Box
-// each motion.div: animate={inView ? 'visible' : 'hidden'}
 ```
 
-### Variants pattern per element
+### Each animated element is its own `motion.div`
+
+- The **vertical line** `Box` is wrapped in a `motion.div`
+- Each **dot** `Box` is wrapped in its own `motion.div`
+- Each **card** (`ExperienceCard`) is wrapped in its own `motion.div`
+- All use `animate={inView ? 'visible' : 'hidden'}` driven by the single `inView` boolean
+
+### Variants + timing
 
 ```js
 // Line
-variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1 } }}
-transition={{ duration: 1.8, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+const lineVariants = {
+  hidden: { scaleY: 0 },
+  visible: { scaleY: 1, transition: { duration: 1.8, delay: 0, ease: [0.16, 1, 0.3, 1] } }
+};
 
-// Dot
-variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}
-transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+// Dot (i = 0, 1, 2)
+const dotVariants = (i) => ({
+  hidden: { scale: 0, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { duration: 0.4, delay: 0.3 + i * 0.3, ease: [0.22, 1, 0.36, 1] } }
+});
 
-// Card
-variants={{ hidden: { x: 28, opacity: 0 }, visible: { x: 0, opacity: 1 } }}
-transition={{ duration: 0.65, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+// Card (i = 0, 1, 2)
+const cardVariants = (i) => ({
+  hidden: { x: 28, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.65, delay: 0.45 + i * 0.3, ease: [0.22, 1, 0.36, 1] } }
+});
 ```
-
-### Full timing table
-
-| Step | Element | `hidden` | `visible` | Delay | Duration | Easing |
-|------|---------|----------|-----------|-------|----------|--------|
-| 1 | Vertical line | `scaleY:0` | `scaleY:1` | 0s | 1.8s | `[0.16, 1, 0.3, 1]` |
-| 2 | Dot 1 (KreditBee) | `scale:0, opacity:0` | `scale:1, opacity:1` | 0.3s | 0.4s | `[0.22, 1, 0.36, 1]` |
-| 3 | Card 1 | `x:28, opacity:0` | `x:0, opacity:1` | 0.45s | 0.65s | `[0.22, 1, 0.36, 1]` |
-| 4 | Dot 2 (Walrus) | `scale:0, opacity:0` | `scale:1, opacity:1` | 0.6s | 0.4s | `[0.22, 1, 0.36, 1]` |
-| 5 | Card 2 | `x:28, opacity:0` | `x:0, opacity:1` | 0.75s | 0.65s | `[0.22, 1, 0.36, 1]` |
-| 6 | Dot 3 (GlobalLogic) | `scale:0, opacity:0` | `scale:1, opacity:1` | 0.9s | 0.4s | `[0.22, 1, 0.36, 1]` |
-| 7 | Card 3 | `x:28, opacity:0` | `x:0, opacity:1` | 1.05s | 0.65s | `[0.22, 1, 0.36, 1]` |
 
 ---
 
 ## Active Indicator (KreditBee dot only)
 
-Applied via MUI `sx` `'&::after'` on the KreditBee dot `Box`. The dot `Box` must have `position: 'relative'` (already specified in Layout above).
+Applied via MUI `sx` `'&::after'` on the KreditBee dot `Box`. This works because the dot has `position: 'relative'`, making it the positioning context for `::after`.
 
 ```js
+// On KreditBee dot Box sx prop:
 '&::after': {
-  content: '""',           // required — without this the pseudo-element does not render
-  position: 'absolute',    // required — positions ring relative to the dot
+  content: '""',
+  position: 'absolute',
   inset: '-5px',
-  borderRadius: '50%',     // required — makes the ring circular
+  borderRadius: '50%',
   border: '2px solid #6366F1',
   animation: 'pulse-ring 2s ease-out infinite',
 }
 ```
 
-`@keyframes pulse-ring` added to `src/index.css`:
+`@keyframes pulse-ring` added to `src/index.css` (plain CSS, not CSS-in-JS):
 
 ```css
 @keyframes pulse-ring {
@@ -162,9 +165,7 @@ Applied via MUI `sx` `'&::after'` on the KreditBee dot `Box`. The dot `Box` must
 
 ## ExperienceCard changes
 
-Remove the `motion.div` wrapper from `ExperienceCard`. The component's **root element becomes the existing inner `Box`** (the one with `backgroundColor: 'colors.surface'`, `borderRadius`, `borderLeft`, etc.) — no wrapper `div` needed. `ExperienceSection` wraps each card in its own `motion.div` for animation.
-
-No other visual or structural changes to `ExperienceCard`.
+Remove the `motion.div` wrapper from `ExperienceCard`. The component's root element becomes the existing inner `Box` (the one with `backgroundColor: 'colors.surface'`, `borderRadius`, `borderLeft`, etc.). `ExperienceCard` does not receive or use any Framer Motion props — animation is fully owned by the `motion.div` wrapper in `ExperienceSection`. No other visual changes.
 
 ---
 
@@ -173,9 +174,9 @@ No other visual or structural changes to `ExperienceCard`.
 | File | Change |
 |------|--------|
 | `src/index.css` | Add `@keyframes pulse-ring` |
-| `src/layouts/landing-page/components/experience-section/ExperienceSection.jsx` | Full rewrite — `useInView`, timeline layout, 3 entries, KreditBee content, updated Walrus tenure |
+| `src/layouts/landing-page/components/experience-section/ExperienceSection.jsx` | Full rewrite — `useInView`, flexbox timeline layout, 3 entries, KreditBee content, updated Walrus tenure |
 | `src/layouts/landing-page/components/experience-section/ExperienceCard.jsx` | Remove `motion.div` wrapper; root becomes inner `Box` |
-| `src/layouts/landing-page/components/experience-section/ExperienceSectionStyles.js` | **Cleared** — styles inlined into `ExperienceSection.jsx`. File kept with empty export to avoid broken imports. |
+| `src/layouts/landing-page/components/experience-section/ExperienceSectionStyles.js` | Cleared to empty export. The import `{ experienceSectionStyles }` in `ExperienceSection.jsx` is also removed since styles are inlined. |
 
 ---
 
