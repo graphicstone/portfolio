@@ -113,6 +113,7 @@ export default function ExperienceSection() {
         {/* Vertical line — motion.div IS the line element */}
         <motion.div
           variants={lineVariants}
+          initial="hidden"
           animate={animate}
           style={{
             transformOrigin: 'top',
@@ -129,7 +130,7 @@ export default function ExperienceSection() {
         {/* ── Entry 1: KreditBee ── */}
         <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: { xs: '40px', md: '64px' } }}>
           <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(0)} animate={animate}>
+            <motion.div variants={dotVariants(0)} initial="hidden" animate={animate}>
               <Box
                 sx={{
                   ...baseDotSx,
@@ -149,7 +150,7 @@ export default function ExperienceSection() {
             </motion.div>
           </Box>
           <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(0)} animate={animate}>
+            <motion.div variants={cardVariants(0)} initial="hidden" animate={animate}>
               <ExperienceCard
                 companyLogo={
                   <Box
@@ -187,12 +188,12 @@ export default function ExperienceSection() {
         {/* ── Entry 2: Walrus Tech ── */}
         <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: { xs: '40px', md: '64px' } }}>
           <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(1)} animate={animate}>
+            <motion.div variants={dotVariants(1)} initial="hidden" animate={animate}>
               <Box sx={baseDotSx} />
             </motion.div>
           </Box>
           <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(1)} animate={animate}>
+            <motion.div variants={cardVariants(1)} initial="hidden" animate={animate}>
               <ExperienceCard
                 companyLogo={<RenderNet />}
                 jobTitle="Senior Frontend Engineer at Walrus Tech Inc. (YC S21)"
@@ -265,12 +266,12 @@ export default function ExperienceSection() {
         {/* ── Entry 3: GlobalLogic (last — no marginBottom) ── */}
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(2)} animate={animate}>
+            <motion.div variants={dotVariants(2)} initial="hidden" animate={animate}>
               <Box sx={baseDotSx} />
             </motion.div>
           </Box>
           <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(2)} animate={animate}>
+            <motion.div variants={cardVariants(2)} initial="hidden" animate={animate}>
               <ExperienceCard
                 companyLogo={<GlobalLogic />}
                 jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
