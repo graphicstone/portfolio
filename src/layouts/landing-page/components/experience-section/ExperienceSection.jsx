@@ -9,16 +9,6 @@ import GlobalLogic from '../../../../assets/svg/experience/globallogic.svg?react
 
 // ── Animation variants ──────────────────────────────────────────────────────
 
-const lineVariants = {
-  hidden:  { scaleY: 0 },
-  visible: { scaleY: 1, transition: { duration: 1.8, delay: 0, ease: [0.16, 1, 0.3, 1] } },
-};
-
-const dotVariants = (i) => ({
-  hidden:  { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { duration: 0.4, delay: 0.3 + i * 0.3, ease: [0.22, 1, 0.36, 1] } },
-});
-
 const cardVariants = (i) => ({
   hidden:  { x: 28, opacity: 0 },
   visible: { x: 0,  opacity: 1, transition: { duration: 0.65, delay: 0.45 + i * 0.3, ease: [0.22, 1, 0.36, 1] } },
@@ -65,26 +55,6 @@ const workExperience = {
   ],
 };
 
-// ── Dot column shared styles ─────────────────────────────────────────────────
-
-const dotColumnSx = {
-  width: '24px',
-  flexShrink: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  paddingTop: { xs: '20px', md: '24px' },
-};
-
-const baseDotSx = {
-  width: '7px',
-  height: '7px',
-  borderRadius: '50%',
-  backgroundColor: 'rgba(255,255,255,0.2)',
-  zIndex: 2,
-  position: 'relative',
-};
-
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function ExperienceSection() {
@@ -107,36 +77,11 @@ export default function ExperienceSection() {
     >
       <SectionHeading label="Career" title="My" accent="Experience" />
 
-      {/* Entries container — position:relative contains the absolute line */}
-      <Box ref={ref} sx={{ position: 'relative' }}>
-
-        {/* Vertical line — motion.div IS the line element */}
-        <motion.div
-          variants={lineVariants}
-          initial="hidden"
-          animate={animate}
-          style={{
-            transformOrigin: 'top',
-            position: 'absolute',
-            left: '11px',
-            top: 0,
-            bottom: 0,
-            width: '1px',
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 60%, transparent 100%)',
-            zIndex: 0,
-          }}
-        />
+      <Box ref={ref} sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '16px', md: '20px' } }}>
 
         {/* ── Entry 1: KreditBee ── */}
-        <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: { xs: '40px', md: '64px' } }}>
-          <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(0)} initial="hidden" animate={animate}>
-              <Box sx={baseDotSx} />
-            </motion.div>
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(0)} initial="hidden" animate={animate}>
-              <ExperienceCard
+        <motion.div variants={cardVariants(0)} initial="hidden" animate={animate}>
+          <ExperienceCard
                 isActive={true}
                 defaultExpanded={true}
                 expandLabel="4 bullets"
@@ -170,20 +115,11 @@ export default function ExperienceSection() {
                   'Building performant, accessible interfaces for millions of users.',
                 ]}
               />
-            </motion.div>
-          </Box>
-        </Box>
+        </motion.div>
 
         {/* ── Entry 2: Walrus Tech ── */}
-        <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: { xs: '40px', md: '64px' } }}>
-          <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(1)} initial="hidden" animate={animate}>
-              <Box sx={baseDotSx} />
-            </motion.div>
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(1)} initial="hidden" animate={animate}>
-              <ExperienceCard
+        <motion.div variants={cardVariants(1)} initial="hidden" animate={animate}>
+          <ExperienceCard
                 isActive={false}
                 defaultExpanded={false}
                 expandLabel="4 projects"
@@ -252,32 +188,21 @@ export default function ExperienceSection() {
                   </Box>
                 </Box>
               </ExperienceCard>
-            </motion.div>
-          </Box>
-        </Box>
+        </motion.div>
 
-        {/* ── Entry 3: GlobalLogic (last — no marginBottom) ── */}
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-          <Box sx={dotColumnSx}>
-            <motion.div variants={dotVariants(2)} initial="hidden" animate={animate}>
-              <Box sx={baseDotSx} />
-            </motion.div>
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <motion.div variants={cardVariants(2)} initial="hidden" animate={animate}>
-              <ExperienceCard
-                isActive={false}
-                defaultExpanded={false}
-                expandLabel="2 bullets"
-                tags={['Android', 'Kotlin', 'MVVM']}
-                companyLogo={<GlobalLogic />}
-                jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
-                tenure="Jul 2019 – May 2021"
-                description={workExperience.globalLogic}
-              />
-            </motion.div>
-          </Box>
-        </Box>
+        {/* ── Entry 3: GlobalLogic ── */}
+        <motion.div variants={cardVariants(2)} initial="hidden" animate={animate}>
+          <ExperienceCard
+            isActive={false}
+            defaultExpanded={false}
+            expandLabel="2 bullets"
+            tags={['Android', 'Kotlin', 'MVVM']}
+            companyLogo={<GlobalLogic />}
+            jobTitle="Software Engineer at GlobalLogic (A Hitachi Group Company)"
+            tenure="Jul 2019 – May 2021"
+            description={workExperience.globalLogic}
+          />
+        </motion.div>
 
       </Box>
     </Box>
