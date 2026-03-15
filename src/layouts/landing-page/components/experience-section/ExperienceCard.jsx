@@ -3,6 +3,25 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 
+const TAG_BASE_SX = {
+  fontSize: '10px', fontWeight: 600,
+  padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.03em',
+};
+
+const TAG_ACTIVE_SX = {
+  ...TAG_BASE_SX,
+  color: '#a5b4fc',
+  background: 'rgba(99,102,241,0.1)',
+  border: '1px solid rgba(99,102,241,0.2)',
+};
+
+const TAG_INACTIVE_SX = {
+  ...TAG_BASE_SX,
+  color: '#52525b',
+  background: 'rgba(255,255,255,0.03)',
+  border: '1px solid #2a2a2a',
+};
+
 export default function ExperienceCard({
   companyLogo,
   jobTitle,
@@ -55,6 +74,10 @@ export default function ExperienceCard({
       {/* Header row — click to toggle */}
       <Box
         onClick={() => setIsOpen((prev) => !prev)}
+        role="button"
+        tabIndex={0}
+        aria-expanded={isOpen}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen((prev) => !prev); } }}
         sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -91,21 +114,7 @@ export default function ExperienceCard({
                 <Box
                   key={tag}
                   component="span"
-                  sx={
-                    isActive
-                      ? {
-                          fontSize: '10px', fontWeight: 600, color: '#a5b4fc',
-                          background: 'rgba(99,102,241,0.1)',
-                          border: '1px solid rgba(99,102,241,0.2)',
-                          padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.03em',
-                        }
-                      : {
-                          fontSize: '10px', fontWeight: 600, color: '#52525b',
-                          background: 'rgba(255,255,255,0.03)',
-                          border: '1px solid #2a2a2a',
-                          padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.03em',
-                        }
-                  }
+                  sx={isActive ? TAG_ACTIVE_SX : TAG_INACTIVE_SX}
                 >
                   {tag}
                 </Box>
@@ -167,7 +176,7 @@ export default function ExperienceCard({
           ) : (
             <ul style={{ margin: 0, paddingLeft: '20px' }}>
               {description.map((item, index) => (
-                <li key={index} style={{ marginBottom: '6px' }}>
+                <li key={index + item} style={{ marginBottom: '6px' }}>
                   <Typography variant="paragraph_p2_regular" sx={{ color: 'colors.textSecondary' }}>
                     {item}
                   </Typography>
