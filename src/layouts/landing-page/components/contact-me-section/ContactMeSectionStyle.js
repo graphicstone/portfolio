@@ -1,33 +1,37 @@
 export const contactMeSectionStyles = {
-  contactMeSection: {
-    width: '100%',
-    padding: { xs: '40px 16px', md: '60px 80px' },
-    display: 'flex',
-    flexDirection: { xs: 'column', md: 'row' },
-    alignItems: { xs: 'flex-start', md: 'center' },
-    gap: '48px',
-    scrollMarginTop: { xs: '72px', md: '84px' }
-  },
-  contactMeInfo: { display: 'flex', flexDirection: 'column', gap: '40px' },
   contactMeForm: {
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
-    width: '100%'
+    width: '100%',
+    '& .MuiTextField-root': {
+      '& .MuiOutlinedInput-root': {
+        backgroundColor: '#111111',
+        borderRadius: '8px',
+        '& fieldset': { borderColor: '#1E1E1E' },
+        '&:hover fieldset': { borderColor: '#6366F1' },
+        '&.Mui-focused fieldset': { borderColor: '#6366F1' },
+      },
+      '& .MuiInputLabel-root': { color: '#71717A' },
+      '& .MuiInputLabel-root.Mui-focused': { color: '#6366F1' },
+      '& .MuiOutlinedInput-input': { color: '#F5F5F5' },
+      '& .MuiFormHelperText-root': { color: '#EF4444' },
+    },
   },
   contactMeFormActions: {
     display: 'flex',
-    flexDirection: 'row',
-    gap: '20px'
-  },
-  contactMeText: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px'
+    justifyContent: 'flex-end',
   },
   getInTouchButton: {
     textTransform: 'none',
-    color: 'colors.white',
-    backgroundColor: 'colors.black'
-  }
+    backgroundColor: '#6366F1',
+    color: '#fff',
+    borderRadius: '8px',
+    padding: '12px 28px',
+    fontWeight: 600,
+    '&:hover': {
+      backgroundColor: '#4F46E5',
+      boxShadow: '0 8px 24px rgba(99,102,241,0.3)',
+    },
+  },
 };
