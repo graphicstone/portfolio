@@ -12,7 +12,8 @@ export const socialButtonStyles = {
     cursor: 'pointer',
     '& svg': {
       width: 'auto',
-      height: '32px'
+      height: '32px',
+      fill: colorPalette.white,
     },
     '&:hover': {
       backgroundColor: colorPalette.black,
